@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatima Almuhamidh | Cybersecurity Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(11, 15, 20, 0.95);
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1f2a36;
+      z-index: 100;
+    }
+
+    nav h2 {
+      color: #58d6c7;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #58d6c7;
+    }
+
+    header {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 8%;
+    }
+
+    header h1 {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+
+    header h2 {
+      color: #58d6c7;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      max-width: 700px;
+      color: #b7c0ca;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 20px;
+      border: 1px solid #58d6c7;
+      color: #58d6c7;
+      text-decoration: none;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .btn:hover {
+      background: #58d6c7;
+      color: #0b0f14;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    section h2 {
+      font-size: 34px;
+      margin-bottom: 30px;
+      color: #58d6c7;
+    }
+
+    .card {
+      background: #111821;
+      border: 1px solid #1f2a36;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #b7c0ca;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      background: #111821;
+      border: 1px solid #263544;
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #dbe4ec;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #1f2a36;
+      color: #7f8b96;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 40px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <h2>FA.</h2>
+    <div>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Fatima Almuhamidh</h1>
+    <h2>Cybersecurity & Digital Forensics</h2>
+
+    <p>
+      Information Technology graduate with Honors, focused on Digital Forensics,
+      Incident Response, Cyber Threat Intelligence, Malware Analysis, and Security Operations.
+    </p>
+
+    <a class="btn" href="#projects">View My Work</a>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+
+    <div class="card">
+      <p>
+        I am an Information Technology graduate with a strong interest in cybersecurity,
+        digital forensics, incident response, and cyber threat intelligence.
+        My experience includes hands-on cybersecurity training, forensic investigations,
+        log analysis, malware analysis, network traffic analysis, and security monitoring.
+      </p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="card">
+      <h3>Digital Forensics & Cybersecurity Trainee</h3>
+      <p><strong>King Abdulaziz City for Science and Technology (KACST)</strong></p>
+      <p>
+        Conducted digital forensic analysis of Windows-based devices, examined forensic
+        artifacts, investigated potential vulnerabilities and suspicious activity,
+        and prepared technical findings and security recommendations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Advanced Cybercrime & Digital Forensics Bootcamp</h3>
+      <p><strong>Tuwaiq Academy</strong></p>
+      <p>
+        Completed an intensive 360-hour training program covering digital forensics,
+        incident response, threat intelligence, malware analysis, log investigation,
+        network analysis, and hands-on cybersecurity investigations.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="card">
+      <h3>CryptoTrace</h3>
+      <p>
+        A DFIR platform designed to detect and investigate cryptojacking attacks using
+        forensic analysis, threat intelligence, rule-based detection, and AI-assisted analysis.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Multi-Campaign Threat Intelligence Analysis</h3>
+      <p>
+        Analyzed multiple cyber threat campaigns using MISP, TheHive, Cortex,
+        IOC analysis, threat correlation, and MITRE ATT&CK mapping.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Trojan.Doina Malware Analysis</h3>
+      <p>
+        Performed static and dynamic analysis of a Windows malware sample,
+        documented indicators of compromise, and mapped observed behaviors to MITRE ATT&CK.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+
+    <div class="skills">
+      <div class="skill">Digital Forensics</div>
+      <div class="skill">Incident Response</div>
+      <div class="skill">Cyber Threat Intelligence</div>
+      <div class="skill">Malware Analysis</div>
+      <div class="skill">Network Traffic Analysis</div>
+      <div class="skill">Log Analysis</div>
+      <div class="skill">Threat Hunting</div>
+      <div class="skill">SIEM</div>
+      <div class="skill">Wireshark</div>
+      <div class="skill">Wazuh</div>
+      <div class="skill">Autopsy</div>
+      <div class="skill">FTK Imager</div>
+      <div class="skill">Volatility</div>
+      <div class="skill">MISP</div>
+      <div class="skill">TheHive</div>
+      <div class="skill">MITRE ATT&CK</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+
+    <div class="card">
+      <p>Email: your-email@example.com</p>
+      <p>LinkedIn: Add your LinkedIn URL here</p>
+      <p>GitHub: Add your GitHub URL here</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Fatima Almuhamidh
+  </footer>
+
+</body>
+</html>
