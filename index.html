@@ -1,126 +1,2005 @@
-<script>
-  const CHALLENGE_SET_VERSION = 1;
-  const COOLDOWN_HOURS = 2;
-  const STORAGE_KEY = "fatimaPortfolioInvestigationState";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  const challenges = [
-    {
-      id: "case-01",
-      label: "CASE 01 / HIDDEN EVIDENCE",
-      title: "Something survived the reboot.",
-      difficulty: "Easy",
-      story:
-        "An analyst collected a short Windows triage timeline after a user reported unusual activity. Most events are routine. One artifact suggests that a program was configured to start again when the user logs in.",
-      evidence: `
-        <span class="log-line log-muted">09:14:03  USER      interactive logon successful</span>
-        <span class="log-line">09:14:11  FILE      C:\\Users\\analyst\\Downloads\\invoice.pdf</span>
-        <span class="log-line">09:14:29  PROCESS   chrome.exe</span>
-        <span class="log-line log-warn">09:15:02  REGISTRY  HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater</span>
-        <span class="log-line">09:15:04  VALUE     C:\\Users\\analyst\\AppData\\Roaming\\updater.exe</span>
-        <span class="log-line log-muted">09:18:31  USB       device disconnected</span>
-      `,
-      question: "Which Windows artifact most clearly indicates persistence?",
-      hint: "Look for something that can automatically launch a program when a user signs in.",
-      acceptedAnswers: [
-        "run key",
-        "registry run key",
-        "windows run key",
-        "currentversion run",
-        "hkcu run",
-        "registry"
-      ],
-      flag: "FATIMA_FLAG{YOU_FOUND_WHAT_OTHERS_MISSED}"
-    },
+  <title>Fatima Almuhamidh | Cybersecurity & DFIR</title>
 
-    {
-      id: "case-02",
-      label: "CASE 02 / INVESTIGATION TRAIL",
-      title: "Reconstruct the sequence.",
-      difficulty: "Medium",
-      story:
-        "A workstation generated three related events within seconds. Your job is to identify the process that initiated the suspicious sequence before the outbound connection occurred.",
-      evidence: `
-        <span class="log-line">14:22:07  PROCESS   winword.exe opened Q3_Report.docm</span>
-        <span class="log-line log-warn">14:22:12  PROCESS   winword.exe → powershell.exe</span>
-        <span class="log-line">14:22:15  NETWORK   powershell.exe → 198.51.100.24:443</span>
-        <span class="log-line log-interesting">14:22:19  FILE      C:\\Users\\Public\\update.dat created</span>
-        <span class="log-line log-muted">14:23:10  PROCESS   winword.exe exited</span>
-      `,
-      question: "Which process directly initiated the outbound network connection?",
-      hint: "Follow the timeline immediately before the NETWORK event.",
-      acceptedAnswers: [
-        "powershell",
-        "powershell.exe",
-        "power shell",
-        "ps"
-      ],
-      flag: "FATIMA_FLAG{YOU_THOUGHT_LIKE_AN_INVESTIGATOR}"
-    },
+  <meta
+    name="description"
+    content="Cybersecurity and DFIR portfolio of Fatima Almuhamidh — Digital Forensics, Incident Response, Threat Intelligence, Malware Analysis, and Security Investigations."
+  />
 
-    {
-      id: "case-03",
-      label: "CASE 03 / MISSING PIECE",
-      title: "Connect the intelligence.",
-      difficulty: "Medium",
-      story:
-        "Three threat intelligence notes were collected from separate investigations. Two are already linked to the same campaign. Identify the IOC that completes the correlation.",
-      evidence: `
-        <span class="log-line">INTEL-A  Campaign: ORBITAL      Domain: sync-cloud[.]net</span>
-        <span class="log-line">INTEL-B  Malware:  DriftLoader  Hash:   9f21...a8c4</span>
-        <span class="log-line log-interesting">INTEL-C  Report: DriftLoader observed contacting sync-cloud[.]net</span>
-        <span class="log-line log-muted">INTEL-D  Domain: static-update[.]org — unrelated campaign</span>
-      `,
-      question: "Which domain is the missing IOC connecting the malware to the campaign?",
-      hint: "One report explicitly connects the malware family to a domain already associated with the campaign.",
-      acceptedAnswers: [
-        "sync-cloud.net",
-        "sync-cloud[.]net",
-        "sync cloud net",
-        "sync-cloud"
-      ],
-      flag: "FATIMA_FLAG{YOU_FOUND_THE_MISSING_PIECE}"
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-soft: #0d111b;
+      --card: rgba(18, 23, 35, 0.72);
+      --text: #f5f7fb;
+      --muted: #9da8ba;
+      --purple: #aa8cff;
+      --teal: #65d7cf;
+      --border: rgba(255,255,255,0.09);
+      --border-active: rgba(170,140,255,0.45);
+      --shadow: 0 24px 70px rgba(0,0,0,0.28);
+      --radius: 24px;
     }
-  ];
 
-  function defaultState() {
-    return {
-      version: CHALLENGE_SET_VERSION,
-      completed: [],
-      currentChallengeId: null,
-      lastSolvedAt: null,
-      attemptCounts: {},
-      assignedAt: null
-    };
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  function loadState() {
-    try {
-      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    html {
+      scroll-behavior: smooth;
+    }
 
-      if (!stored) {
-        return defaultState();
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(circle at 15% 10%, rgba(126,95,255,0.12), transparent 30%),
+        radial-gradient(circle at 90% 30%, rgba(68,211,202,0.08), transparent 25%),
+        var(--bg);
+
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8,11,18,0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      font-size: 1.08rem;
+    }
+
+    .brand span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 12px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--teal);
+      font-size: 0.84rem;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .pulse {
+      width: 7px;
+      height: 7px;
+      background: var(--teal);
+      border-radius: 50%;
+      box-shadow: 0 0 16px var(--teal);
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.4rem);
+      letter-spacing: -0.065em;
+      line-height: 0.94;
+      margin-bottom: 25px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #bba7ff, #76ded7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-copy strong {
+      color: white;
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #090b11;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.035);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-active);
+      background: rgba(170,140,255,0.08);
+    }
+
+    .evidence-orbit {
+      position: relative;
+      width: min(420px, 90vw);
+      aspect-ratio: 1;
+      margin: auto;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    .evidence-orbit::before,
+    .evidence-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border: 1px dashed rgba(170,140,255,0.18);
+      border-radius: 50%;
+    }
+
+    .evidence-orbit::after {
+      inset: 28%;
+      border-style: solid;
+      border-color: rgba(101,215,207,0.12);
+    }
+
+    .orbit-center {
+      position: relative;
+      z-index: 5;
+      width: 145px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, rgba(170,140,255,0.24), rgba(17,23,37,0.95));
+      border: 1px solid rgba(170,140,255,0.35);
+      box-shadow:
+        0 0 60px rgba(170,140,255,0.09),
+        inset 0 0 30px rgba(255,255,255,0.03);
+    }
+
+    .orbit-center strong {
+      display: block;
+      font-size: 1.15rem;
+    }
+
+    .orbit-center small {
+      color: var(--muted);
+    }
+
+    .node {
+      position: absolute;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(13,17,27,0.92);
+      color: #cbd3e0;
+      font-size: 0.77rem;
+    }
+
+    .node-1 { top: 9%; left: 39%; }
+    .node-2 { right: -2%; top: 47%; }
+    .node-3 { bottom: 8%; left: 35%; }
+    .node-4 { left: -2%; top: 47%; }
+
+    section {
+      padding: 105px 0;
+    }
+
+    .section-head {
+      margin-bottom: 44px;
+      max-width: 750px;
+    }
+
+    .section-kicker {
+      color: var(--purple);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+    }
+
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .mindset {
+      padding: 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .mindset-number {
+      font-size: 3.5rem;
+      color: rgba(170,140,255,0.3);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .mindset h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .mindset p {
+      color: var(--muted);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      bottom: 7px;
+      width: 1px;
+      background: linear-gradient(var(--purple), var(--teal));
+      opacity: 0.45;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 42px 30px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -29px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--purple);
+      box-shadow: 0 0 18px rgba(170,140,255,0.4);
+    }
+
+    .timeline-item small {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .timeline-item h3 {
+      margin: 5px 0 5px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cap {
+      padding: 25px;
+      transition: 0.25s;
+    }
+
+    .cap:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-active);
+    }
+
+    .cap-label {
+      color: var(--teal);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .cap h3 {
+      margin-bottom: 8px;
+    }
+
+    .cap p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      min-height: 310px;
+      transition: 0.25s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-active);
+    }
+
+    .project-number {
+      font-family: monospace;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 40px;
+    }
+
+    .project h3 {
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #bdc6d4;
+      font-size: 0.72rem;
+    }
+
+    .challenge-wrapper {
+      position: relative;
+      overflow: hidden;
+      padding: 40px;
+      border: 1px solid rgba(170,140,255,0.26);
+    }
+
+    .challenge-wrapper::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      right: -120px;
+      top: -160px;
+      background: rgba(170,140,255,0.10);
+      filter: blur(80px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .case-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 18px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-id {
+      font-family: monospace;
+      color: var(--teal);
+    }
+
+    .case-meta {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .case-chip {
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .progress-wrap {
+      margin: 18px 0 28px;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--purple), var(--teal));
+      transition: 0.35s;
+    }
+
+    .case-story {
+      color: var(--muted);
+      margin-bottom: 25px;
+      max-width: 850px;
+    }
+
+    .evidence-box {
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: #090d14;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.84rem;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    .log-line {
+      display: block;
+      white-space: nowrap;
+      margin: 4px 0;
+      color: #b5c0ce;
+    }
+
+    .log-muted { color: #687588; }
+    .log-warn { color: #e6c989; }
+    .log-interesting { color: #8ee6dd; }
+
+    .question {
+      font-weight: 700;
+      margin: 18px 0 10px;
+    }
+
+    .answer-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .answer-input {
+      flex: 1;
+      min-height: 48px;
+      padding: 0 14px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .answer-input:focus {
+      border-color: rgba(170,140,255,0.65);
+      box-shadow: 0 0 0 4px rgba(170,140,255,0.08);
+    }
+
+    .case-message {
+      min-height: 25px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hint {
+      margin-top: 16px;
+    }
+
+    .hint button {
+      border: 0;
+      background: none;
+      color: var(--purple);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.86rem;
+    }
+
+    .hint-text {
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 25px 0 5px;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      margin: auto auto 20px;
+      border-radius: 50%;
+      background: rgba(101,215,207,0.08);
+      border: 1px solid rgba(101,215,207,0.3);
+      color: var(--teal);
+      font-size: 1.5rem;
+    }
+
+    .flag {
+      margin: 24px auto 14px;
+      max-width: 760px;
+      padding: 18px;
+      background: #080c13;
+      border: 1px solid rgba(170,140,255,0.4);
+      border-radius: 14px;
+      color: #c8b7ff;
+      font-family: monospace;
+      font-size: clamp(0.82rem, 2vw, 1.05rem);
+      overflow-wrap: anywhere;
+    }
+
+    .global-stat {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .global-stat strong {
+      color: white;
+    }
+
+    .cooldown-panel {
+      display: none;
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .countdown {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 14px 0;
+      color: var(--purple);
+    }
+
+    .completed-panel {
+      display: none;
+      text-align: center;
+      padding: 35px 5px;
+    }
+
+    .replay-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .replay-btn {
+      padding: 14px;
+      background: rgba(255,255,255,0.03);
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .replay-btn:hover {
+      border-color: var(--border-active);
+    }
+
+    .contact-card {
+      padding: 45px;
+      text-align: center;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: 10px auto 25px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 0;
+      color: #657184;
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
 
-      // لو غيرنا مجموعة التحديات لاحقًا
-      if (stored.version !== CHALLENGE_SET_VERSION) {
-        return defaultState();
+      .evidence-orbit {
+        width: min(350px, 85vw);
       }
 
+      .cap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .mindset {
+        grid-template-columns: 1fr;
+      }
+
+      .cap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge-wrapper {
+        padding: 23px;
+      }
+
+      .case-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .answer-row {
+        flex-direction: column;
+      }
+
+      .replay-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        FATIMA<span>.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Journey</a>
+        <a href="#projects">Projects</a>
+        <a href="#challenge">Case File</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="hero">
+
+      <div>
+        <div class="eyebrow">
+          <span class="pulse"></span>
+          Cybersecurity · DFIR · Threat Intelligence
+        </div>
+
+        <h1>
+          Fatima<br />
+          <span class="gradient-text">Almuhamidh.</span>
+        </h1>
+
+        <p class="hero-copy">
+          I turn <strong>digital traces into investigative stories</strong> —
+          from forensic artifacts and security logs to threat intelligence,
+          incident analysis, and actionable findings.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#challenge">
+            Open Case File
+          </a>
+
+          <a class="btn btn-secondary" href="#projects">
+            Explore My Work
+          </a>
+        </div>
+      </div>
+
+      <div class="evidence-orbit">
+        <div class="node node-1">Registry</div>
+        <div class="node node-2">Network</div>
+        <div class="node node-3">Threat Intel</div>
+        <div class="node node-4">Logs</div>
+
+        <div class="orbit-center">
+          <div>
+            <strong>Follow</strong>
+            <small>the evidence</small>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="about">
+
+      <div class="section-head">
+        <div class="section-kicker">Investigation Mindset</div>
+
+        <h2 class="section-title">
+          Evidence first. Assumptions second.
+        </h2>
+      </div>
+
+      <div class="card mindset">
+        <div class="mindset-number">01</div>
+
+        <div>
+          <h3>How I approach a security investigation</h3>
+
+          <p>
+            I start with the artifact, validate its context, correlate it with
+            surrounding activity, and reconstruct the story behind the evidence.
+            My interests sit at the intersection of digital forensics, incident
+            response, threat intelligence, and security analysis.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="experience">
+
+      <div class="section-head">
+        <div class="section-kicker">Journey</div>
+
+        <h2 class="section-title">
+          Building through investigation.
+        </h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+
+          <small>Academic Foundation</small>
+
+          <h3>Information Technology — Honors Graduate</h3>
+
+          <p>
+            Built a technical foundation across computing, systems, development,
+            networking, and information technology before specializing further
+            in cybersecurity and digital investigations.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+
+          <small>Tuwaiq Academy · 360 Hours</small>
+
+          <h3>Advanced Cybercrime & Digital Forensics Bootcamp</h3>
+
+          <p>
+            Intensive hands-on training covering digital forensics, incident
+            response, malware analysis, network traffic analysis, cyber threat
+            intelligence, security monitoring, and investigative reporting.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+
+          <small>KACST</small>
+
+          <h3>Digital Forensics & Cybersecurity Training</h3>
+
+          <p>
+            Conducted forensic analysis of Windows-based devices, examined
+            registry artifacts, logs, USB activity, installed applications and
+            persistence indicators, investigated security risks, and prepared
+            technical findings and recommendations.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+
+      <div class="section-head">
+        <div class="section-kicker">Capabilities</div>
+
+        <h2 class="section-title">
+          More than a list of tools.
+        </h2>
+
+        <p class="section-desc">
+          The areas I use to investigate, correlate, understand, and communicate
+          security activity.
+        </p>
+      </div>
+
+      <div class="cap-grid">
+
+        <article class="card cap">
+          <div class="cap-label">DFIR</div>
+
+          <h3>Digital Forensics</h3>
+
+          <p>
+            FTK Imager · Autopsy · Volatility · KAPE · Windows artifacts ·
+            Registry analysis · Timeline analysis
+          </p>
+        </article>
+
+        <article class="card cap">
+          <div class="cap-label">IR</div>
+
+          <h3>Incident Analysis</h3>
+
+          <p>
+            Log analysis · IOC identification · Event correlation ·
+            Investigation workflows · Technical reporting
+          </p>
+        </article>
+
+        <article class="card cap">
+          <div class="cap-label">CTI</div>
+
+          <h3>Threat Intelligence</h3>
+
+          <p>
+            MISP · TheHive · Cortex · MITRE ATT&CK · IOC enrichment ·
+            Threat correlation
+          </p>
+        </article>
+
+        <article class="card cap">
+          <div class="cap-label">NETWORK</div>
+
+          <h3>Traffic Analysis</h3>
+
+          <p>
+            Wireshark · PCAP investigation · Protocol analysis ·
+            Suspicious traffic identification
+          </p>
+        </article>
+
+        <article class="card cap">
+          <div class="cap-label">MALWARE</div>
+
+          <h3>Malware Analysis</h3>
+
+          <p>
+            Static analysis · Dynamic analysis · Behavioral indicators ·
+            YARA · MITRE ATT&CK mapping
+          </p>
+        </article>
+
+        <article class="card cap">
+          <div class="cap-label">MONITORING</div>
+
+          <h3>Security Operations</h3>
+
+          <p>
+            Wazuh · Sysmon · SIEM monitoring · Detection analysis ·
+            Security event investigation
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section id="projects">
+
+      <div class="section-head">
+        <div class="section-kicker">Selected Work</div>
+
+        <h2 class="section-title">
+          Investigations, systems, and ideas.
+        </h2>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="card project">
+          <div class="project-number">PROJECT / 01</div>
+
+          <h3>CryptoTrace</h3>
+
+          <p>
+            A DFIR platform designed to detect and investigate cryptojacking
+            activity by analyzing system and network evidence, correlating
+            suspicious behavior, and supporting rule-based and AI-assisted analysis.
+          </p>
+
+          <div class="tags">
+            <span class="tag">DFIR</span>
+            <span class="tag">Cryptojacking</span>
+            <span class="tag">Threat Intelligence</span>
+            <span class="tag">AI Analysis</span>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="project-number">PROJECT / 02</div>
+
+          <h3>Multi-Campaign Threat Intelligence Analysis</h3>
+
+          <p>
+            Investigated and correlated indicators across multiple threat campaigns
+            using MISP, TheHive, Cortex, IOC enrichment, and MITRE ATT&CK mapping.
+          </p>
+
+          <div class="tags">
+            <span class="tag">MISP</span>
+            <span class="tag">TheHive</span>
+            <span class="tag">Cortex</span>
+            <span class="tag">MITRE ATT&CK</span>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="project-number">PROJECT / 03</div>
+
+          <h3>Trojan.Doina Loader / RAT Analysis</h3>
+
+          <p>
+            Performed static and dynamic malware analysis, extracted indicators
+            of compromise, documented observed behavior, and mapped techniques
+            to MITRE ATT&CK.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Malware Analysis</span>
+            <span class="tag">IOC Analysis</span>
+            <span class="tag">YARA</span>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="project-number">PROJECT / 04</div>
+
+          <h3>Network Malware Investigation</h3>
+
+          <p>
+            Investigated malicious PCAP traffic, reconstructed network behavior,
+            identified suspicious communication patterns, and documented
+            evidence from the attack sequence.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Wireshark</span>
+            <span class="tag">PCAP</span>
+            <span class="tag">Network Forensics</span>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section id="challenge">
+
+      <div class="section-head">
+        <div class="section-kicker">Not Just a Portfolio</div>
+
+        <h2 class="section-title">
+          One case file is waiting for you.
+        </h2>
+
+        <p class="section-desc">
+          Most people scroll through portfolios. You can investigate this one.
+          Each visitor receives one of three case files.
+        </p>
+      </div>
+
+      <div class="card challenge-wrapper">
+
+        <div id="challengeArea">
+
+          <div class="case-topbar">
+            <div class="case-id" id="caseId">
+              CASE FILE
+            </div>
+
+            <div class="case-meta">
+              <span class="case-chip" id="caseDifficulty">Difficulty</span>
+              <span class="case-chip">~2 min</span>
+            </div>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-row">
+              <span>Investigation Progress</span>
+              <span id="progressText">0 / 3 cases completed</span>
+            </div>
+
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+
+          <div id="activeCase">
+
+            <h3 id="caseTitle"></h3>
+
+            <p class="case-story" id="caseStory"></p>
+
+            <div class="evidence-box" id="evidenceBox"></div>
+
+            <div class="question" id="caseQuestion"></div>
+
+            <div class="answer-row">
+              <input
+                id="answerInput"
+                class="answer-input"
+                type="text"
+                autocomplete="off"
+                placeholder="Enter your answer..."
+              />
+
+              <button
+                class="btn btn-primary"
+                id="submitAnswer"
+              >
+                Submit Evidence
+              </button>
+            </div>
+
+            <div class="case-message" id="caseMessage"></div>
+
+            <div class="hint">
+              <button id="hintButton">
+                Need a hint?
+              </button>
+
+              <div class="hint-text" id="hintText"></div>
+            </div>
+
+          </div>
+
+          <div id="successPanel" class="success-panel">
+
+            <div class="success-icon">✓</div>
+
+            <h3>Case solved.</h3>
+
+            <div class="flag" id="flagOutput"></div>
+
+            <p class="global-stat" id="statsOutput">
+              Investigator statistics will appear here.
+            </p>
+
+            <div class="buttons" style="justify-content:center;">
+              <button
+                class="btn btn-primary"
+                id="claimButton"
+              >
+                Claim your win
+              </button>
+            </div>
+
+          </div>
+
+          <div id="cooldownPanel" class="cooldown-panel">
+
+            <div class="section-kicker">
+              CASE ARCHIVE
+            </div>
+
+            <h3>Evidence logged.</h3>
+
+            <p style="color:var(--muted);">
+              A different investigation will unlock in:
+            </p>
+
+            <div class="countdown" id="countdown"></div>
+
+            <p style="color:var(--muted);font-size:.85rem;">
+              Refreshing the page won't change your assigned case.
+            </p>
+
+          </div>
+
+          <div id="completedPanel" class="completed-panel">
+
+            <div class="section-kicker">
+              INVESTIGATION SET COMPLETE
+            </div>
+
+            <h3>You completed every available case.</h3>
+
+            <p style="color:var(--muted);">
+              Nothing else is hidden from you — for now.
+              You can replay any investigation below.
+            </p>
+
+            <div class="replay-grid" id="replayGrid"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="contact">
+
+      <div class="card contact-card">
+
+        <div class="section-kicker">
+          Contact
+        </div>
+
+        <h2 class="section-title">
+          Let's connect the evidence.
+        </h2>
+
+        <p>
+          Interested in DFIR, incident response, threat intelligence,
+          cybersecurity investigations, or simply want to talk about the case
+          you just solved?
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+
+          <a
+            class="btn btn-primary"
+            href="https://github.com/fatima-almuhamidh"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="https://www.linkedin.com/in/fatima-almuhamidh-a5a09833b"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Fatima Almuhamidh · Follow the evidence.
+  </footer>
+
+  <script>
+
+    /* ============================================================
+       CURRENT CHALLENGE SET
+       إذا غيرتي الثلاث تحديات كلها مستقبلًا:
+       غيري فقط 1 إلى 2
+       ============================================================ */
+
+    const CHALLENGE_SET_VERSION = 1;
+
+    const COOLDOWN_HOURS = 2;
+
+    const STORAGE_KEY = "fatimaPortfolioInvestigationState";
+
+
+    const challenges = [
+
+      {
+        id: "case-01",
+
+        label: "CASE 01 / HIDDEN EVIDENCE",
+
+        title: "Something survived the reboot.",
+
+        difficulty: "Easy",
+
+        story:
+          "An analyst collected a short Windows triage timeline after a user reported unusual activity. Most events are routine. One artifact suggests that a program was configured to start again when the user logs in.",
+
+        evidence: `
+          <span class="log-line log-muted">09:14:03  USER      interactive logon successful</span>
+          <span class="log-line">09:14:11  FILE      C:\\Users\\analyst\\Downloads\\invoice.pdf</span>
+          <span class="log-line">09:14:29  PROCESS   chrome.exe</span>
+          <span class="log-line log-warn">09:15:02  REGISTRY  HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater</span>
+          <span class="log-line">09:15:04  VALUE     C:\\Users\\analyst\\AppData\\Roaming\\updater.exe</span>
+          <span class="log-line log-muted">09:18:31  USB       device disconnected</span>
+        `,
+
+        question:
+          "Which Windows artifact most clearly indicates persistence?",
+
+        hint:
+          "Look for something that can automatically launch a program when a user signs in.",
+
+        acceptedAnswers: [
+          "run key",
+          "registry run key",
+          "windows run key",
+          "currentversion run",
+          "hkcu run",
+          "registry"
+        ],
+
+        flag:
+          "FATIMA_FLAG{YOU_FOUND_WHAT_OTHERS_MISSED}"
+      },
+
+
+      {
+        id: "case-02",
+
+        label: "CASE 02 / INVESTIGATION TRAIL",
+
+        title: "Reconstruct the sequence.",
+
+        difficulty: "Medium",
+
+        story:
+          "A workstation generated three related events within seconds. Your job is to identify the process that initiated the suspicious sequence before the outbound connection occurred.",
+
+        evidence: `
+          <span class="log-line">14:22:07  PROCESS   winword.exe opened Q3_Report.docm</span>
+          <span class="log-line log-warn">14:22:12  PROCESS   winword.exe → powershell.exe</span>
+          <span class="log-line">14:22:15  NETWORK   powershell.exe → 198.51.100.24:443</span>
+          <span class="log-line log-interesting">14:22:19  FILE      C:\\Users\\Public\\update.dat created</span>
+          <span class="log-line log-muted">14:23:10  PROCESS   winword.exe exited</span>
+        `,
+
+        question:
+          "Which process directly initiated the outbound network connection?",
+
+        hint:
+          "Follow the timeline immediately before the NETWORK event.",
+
+        acceptedAnswers: [
+          "powershell",
+          "powershell.exe",
+          "power shell",
+          "ps"
+        ],
+
+        flag:
+          "FATIMA_FLAG{YOU_THOUGHT_LIKE_AN_INVESTIGATOR}"
+      },
+
+
+      {
+        id: "case-03",
+
+        label: "CASE 03 / MISSING PIECE",
+
+        title: "Connect the intelligence.",
+
+        difficulty: "Medium",
+
+        story:
+          "Three threat intelligence notes were collected from separate investigations. Two are already linked to the same campaign. Identify the IOC that completes the correlation.",
+
+        evidence: `
+          <span class="log-line">INTEL-A  Campaign: ORBITAL      Domain: sync-cloud[.]net</span>
+          <span class="log-line">INTEL-B  Malware: DriftLoader   Hash: 9f21...a8c4</span>
+          <span class="log-line log-interesting">INTEL-C  Report: DriftLoader observed contacting sync-cloud[.]net</span>
+          <span class="log-line log-muted">INTEL-D  Domain: static-update[.]org — unrelated campaign</span>
+        `,
+
+        question:
+          "Which domain is the missing IOC connecting the malware to the campaign?",
+
+        hint:
+          "One report explicitly connects the malware family to a domain already associated with the campaign.",
+
+        acceptedAnswers: [
+          "sync-cloud.net",
+          "sync-cloud[.]net",
+          "sync cloud net",
+          "sync-cloud"
+        ],
+
+        flag:
+          "FATIMA_FLAG{YOU_FOUND_THE_MISSING_PIECE}"
+      }
+
+    ];
+
+
+    function defaultState() {
       return {
-        ...defaultState(),
-        ...stored
+        version: CHALLENGE_SET_VERSION,
+        completed: [],
+        currentChallengeId: null,
+        lastSolvedAt: null,
+        attemptCounts: {},
+        assignedAt: null,
+        lastSolvedChallengeId: null
       };
-    } catch {
-      return defaultState();
     }
-  }
 
-  function saveState() {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(state)
+
+    function loadState() {
+      try {
+        const stored = JSON.parse(
+          localStorage.getItem(STORAGE_KEY)
+        );
+
+        if (!stored) {
+          return defaultState();
+        }
+
+        if (stored.version !== CHALLENGE_SET_VERSION) {
+          return defaultState();
+        }
+
+        return {
+          ...defaultState(),
+          ...stored
+        };
+
+      } catch {
+        return defaultState();
+      }
+    }
+
+
+    function saveState() {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state)
+      );
+    }
+
+
+    let state = loadState();
+
+
+    const activeCase =
+      document.getElementById("activeCase");
+
+    const successPanel =
+      document.getElementById("successPanel");
+
+    const cooldownPanel =
+      document.getElementById("cooldownPanel");
+
+    const completedPanel =
+      document.getElementById("completedPanel");
+
+    const caseId =
+      document.getElementById("caseId");
+
+    const caseTitle =
+      document.getElementById("caseTitle");
+
+    const caseStory =
+      document.getElementById("caseStory");
+
+    const caseDifficulty =
+      document.getElementById("caseDifficulty");
+
+    const evidenceBox =
+      document.getElementById("evidenceBox");
+
+    const caseQuestion =
+      document.getElementById("caseQuestion");
+
+    const answerInput =
+      document.getElementById("answerInput");
+
+    const submitAnswer =
+      document.getElementById("submitAnswer");
+
+    const caseMessage =
+      document.getElementById("caseMessage");
+
+    const hintButton =
+      document.getElementById("hintButton");
+
+    const hintText =
+      document.getElementById("hintText");
+
+    const flagOutput =
+      document.getElementById("flagOutput");
+
+    const statsOutput =
+      document.getElementById("statsOutput");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const countdown =
+      document.getElementById("countdown");
+
+    const replayGrid =
+      document.getElementById("replayGrid");
+
+    const claimButton =
+      document.getElementById("claimButton");
+
+
+    function normalize(value) {
+      return value
+        .toLowerCase()
+        .trim()
+        .replace(/\[\.\]/g, ".")
+        .replace(/\s+/g, " ");
+    }
+
+
+    function completedChallengeCount() {
+      return challenges.filter(
+        challenge =>
+          state.completed.includes(challenge.id)
+      ).length;
+    }
+
+
+    function updateProgress() {
+      const completed =
+        completedChallengeCount();
+
+      const total =
+        challenges.length;
+
+      progressText.textContent =
+        `${completed} / ${total} cases completed`;
+
+      progressBar.style.width =
+        `${(completed / total) * 100}%`;
+    }
+
+
+    function remainingChallenges() {
+      return challenges.filter(
+        challenge =>
+          !state.completed.includes(challenge.id)
+      );
+    }
+
+
+    function challengeById(id) {
+      return challenges.find(
+        challenge =>
+          challenge.id === id
+      );
+    }
+
+
+    function randomChallenge(list) {
+      return list[
+        Math.floor(Math.random() * list.length)
+      ];
+    }
+
+
+    function cooldownRemaining() {
+      if (!state.lastSolvedAt) return 0;
+
+      const cooldown =
+        COOLDOWN_HOURS * 60 * 60 * 1000;
+
+      const elapsed =
+        Date.now() - state.lastSolvedAt;
+
+      return Math.max(
+        cooldown - elapsed,
+        0
+      );
+    }
+
+
+    function assignChallenge() {
+
+      const remaining =
+        remainingChallenges();
+
+      if (!remaining.length) {
+        showCompletedPanel();
+        return;
+      }
+
+
+      let challenge =
+        challengeById(state.currentChallengeId);
+
+
+      if (
+        !challenge ||
+        state.completed.includes(challenge.id)
+      ) {
+
+        challenge =
+          randomChallenge(remaining);
+
+        state.currentChallengeId =
+          challenge.id;
+
+        state.assignedAt =
+          Date.now();
+
+        saveState();
+      }
+
+
+      renderChallenge(challenge);
+    }
+
+
+    function renderChallenge(challenge) {
+
+      activeCase.style.display = "block";
+      successPanel.style.display = "none";
+      cooldownPanel.style.display = "none";
+      completedPanel.style.display = "none";
+
+      caseId.textContent =
+        challenge.label;
+
+      caseTitle.textContent =
+        challenge.title;
+
+      caseDifficulty.textContent =
+        `Difficulty: ${challenge.difficulty}`;
+
+      caseStory.textContent =
+        challenge.story;
+
+      evidenceBox.innerHTML =
+        challenge.evidence;
+
+      caseQuestion.textContent =
+        challenge.question;
+
+      hintText.textContent =
+        challenge.hint;
+
+      hintText.style.display =
+        "none";
+
+      answerInput.value =
+        "";
+
+      caseMessage.textContent =
+        "";
+
+      updateProgress();
+    }
+
+
+    function checkAnswer() {
+
+      const challenge =
+        challengeById(state.currentChallengeId);
+
+      if (!challenge) return;
+
+
+      const answer =
+        normalize(answerInput.value);
+
+
+      if (!answer) {
+        caseMessage.textContent =
+          "Enter your finding before submitting.";
+        return;
+      }
+
+
+      state.attemptCounts[challenge.id] =
+        (state.attemptCounts[challenge.id] || 0) + 1;
+
+      saveState();
+
+
+      const correct =
+        challenge.acceptedAnswers
+          .map(normalize)
+          .includes(answer);
+
+
+      if (!correct) {
+        caseMessage.textContent =
+          "Not quite. Re-check the evidence and follow the sequence.";
+        return;
+      }
+
+
+      solveChallenge(challenge);
+    }
+
+
+    function solveChallenge(challenge) {
+
+      if (!state.completed.includes(challenge.id)) {
+        state.completed.push(challenge.id);
+      }
+
+      state.lastSolvedAt =
+        Date.now();
+
+      state.lastSolvedChallengeId =
+        challenge.id;
+
+      state.currentChallengeId =
+        null;
+
+      saveState();
+
+      updateProgress();
+
+
+      activeCase.style.display =
+        "none";
+
+      successPanel.style.display =
+        "block";
+
+
+      flagOutput.textContent =
+        challenge.flag;
+
+
+      statsOutput.innerHTML =
+        `<strong>Case solved.</strong> Shared investigator statistics will be connected next.`;
+
+
+      claimButton.onclick = () => {
+        alert(
+          "Claim Your Win will be connected to your private form in the next step."
+        );
+      };
+    }
+
+
+    hintButton.addEventListener(
+      "click",
+      () => {
+        hintText.style.display =
+          hintText.style.display === "block"
+            ? "none"
+            : "block";
+      }
     );
-  }
 
-  let state = loadState();
-</script>
+
+    submitAnswer.addEventListener(
+      "click",
+      checkAnswer
+    );
+
+
+    answerInput.addEventListener(
+      "keydown",
+      event => {
+        if (event.key === "Enter") {
+          checkAnswer();
+        }
+      }
+    );
+
+
+    let countdownTimer = null;
+
+
+    function showCooldown() {
+
+      activeCase.style.display =
+        "none";
+
+      successPanel.style.display =
+        "none";
+
+      completedPanel.style.display =
+        "none";
+
+      cooldownPanel.style.display =
+        "block";
+
+      updateProgress();
+
+
+      function tick() {
+
+        const remaining =
+          cooldownRemaining();
+
+
+        if (remaining <= 0) {
+
+          clearInterval(countdownTimer);
+
+          state.currentChallengeId =
+            null;
+
+          saveState();
+
+          assignChallenge();
+
+          return;
+        }
+
+
+        const hours =
+          Math.floor(
+            remaining / (1000 * 60 * 60)
+          );
+
+        const minutes =
+          Math.floor(
+            (remaining % (1000 * 60 * 60))
+            /
+            (1000 * 60)
+          );
+
+        const seconds =
+          Math.floor(
+            (remaining % (1000 * 60))
+            /
+            1000
+          );
+
+
+        countdown.textContent =
+          `${String(hours).padStart(2,"0")}:` +
+          `${String(minutes).padStart(2,"0")}:` +
+          `${String(seconds).padStart(2,"0")}`;
+      }
+
+
+      tick();
+
+      countdownTimer =
+        setInterval(tick, 1000);
+    }
+
+
+    function showCompletedPanel() {
+
+      activeCase.style.display =
+        "none";
+
+      successPanel.style.display =
+        "none";
+
+      cooldownPanel.style.display =
+        "none";
+
+      completedPanel.style.display =
+        "block";
+
+      updateProgress();
+
+      replayGrid.innerHTML =
+        "";
+
+
+      challenges.forEach(
+        challenge => {
+
+          const button =
+            document.createElement("button");
+
+          button.className =
+            "replay-btn";
+
+          button.textContent =
+            challenge.label.replace(
+              "CASE ",
+              "Replay Case "
+            );
+
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              state.currentChallengeId =
+                challenge.id;
+
+              saveState();
+
+              renderChallenge(challenge);
+            }
+          );
+
+
+          replayGrid.appendChild(button);
+        }
+      );
+    }
+
+
+    function initializeChallengeSystem() {
+
+      updateProgress();
+
+
+      const remaining =
+        remainingChallenges();
+
+
+      if (!remaining.length) {
+        showCompletedPanel();
+        return;
+      }
+
+
+      if (
+        state.currentChallengeId &&
+        !state.completed.includes(
+          state.currentChallengeId
+        )
+      ) {
+
+        const challenge =
+          challengeById(
+            state.currentChallengeId
+          );
+
+
+        if (challenge) {
+          renderChallenge(challenge);
+          return;
+        }
+      }
+
+
+      if (
+        state.lastSolvedAt &&
+        cooldownRemaining() > 0
+      ) {
+        showCooldown();
+        return;
+      }
+
+
+      assignChallenge();
+    }
+
+
+    initializeChallengeSystem();
+
+  </script>
+
+</body>
+</html>
