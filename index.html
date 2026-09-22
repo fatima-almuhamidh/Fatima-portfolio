@@ -22,43 +22,29 @@ Fatima Almuhamidh | Cybersecurity & DFIR
 <style>
 
 :root{
-
   --bg:#080b12;
   --surface:#0e1420;
   --surface2:#111927;
-
   --text:#f5f7fb;
   --muted:#9ba7b8;
-
   --purple:#a78bfa;
   --teal:#72d3cc;
-
   --border:rgba(255,255,255,.09);
   --border2:rgba(255,255,255,.15);
-
   --radius:22px;
-
 }
 
-
 *{
-
   box-sizing:border-box;
   margin:0;
   padding:0;
-
 }
-
 
 html{
-
   scroll-behavior:smooth;
-
 }
 
-
 body{
-
   font-family:
     Inter,
     ui-sans-serif,
@@ -69,1901 +55,1003 @@ body{
     sans-serif;
 
   background:
-    radial-gradient(
-      circle at 10% 5%,
-      rgba(128,92,255,.13),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 88% 24%,
-      rgba(70,205,200,.07),
-      transparent 22%
-    ),
+    radial-gradient(circle at 10% 5%,rgba(128,92,255,.13),transparent 28%),
+    radial-gradient(circle at 88% 24%,rgba(70,205,200,.07),transparent 22%),
     var(--bg);
 
   color:var(--text);
-
   line-height:1.7;
-
 }
-
 
 a{
-
   color:inherit;
-
 }
-
 
 button,
 input{
-
   font:inherit;
-
 }
-
 
 button{
-
   cursor:pointer;
-
 }
-
 
 .container{
-
   width:min(1120px,90%);
   margin:auto;
-
 }
 
-
-/* =====================================================
-   NAV
-===================================================== */
-
+/* NAV */
 
 nav{
-
   position:sticky;
   top:0;
-
   z-index:100;
-
-  background:
-    rgba(8,11,18,.84);
-
-  backdrop-filter:
-    blur(18px);
-
-  border-bottom:
-    1px solid var(--border);
-
+  background:rgba(8,11,18,.84);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
 }
 
-
 .nav-inner{
-
   min-height:70px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
 }
-
 
 .brand{
-
   display:flex;
   align-items:center;
-
   gap:10px;
-
   text-decoration:none;
-
   font-weight:800;
-
 }
-
 
 .brand-logo{
-
   width:38px;
   height:38px;
-
   object-fit:cover;
-
   border-radius:50%;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
 }
-
 
 .brand-fallback{
-
   width:38px;
   height:38px;
-
   display:none;
   place-items:center;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:50%;
-
   color:var(--teal);
-
   font-weight:850;
-
 }
-
 
 .nav-links{
-
   display:flex;
-
   gap:22px;
-
 }
-
 
 .nav-links a{
-
   color:var(--muted);
-
   text-decoration:none;
-
   font-size:.9rem;
-
 }
-
 
 .nav-links a:hover{
-
   color:white;
-
 }
 
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
+/* BUTTONS */
 
 .buttons{
-
   display:flex;
   flex-wrap:wrap;
-
   gap:10px;
-
 }
 
-
 .btn{
-
   min-height:46px;
-
-  padding:
-    0 18px;
-
+  padding:0 18px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:12px;
-
   text-decoration:none;
-
   font-size:.9rem;
-
   font-weight:700;
-
   transition:.2s;
-
 }
-
 
 .btn:hover{
-
-  transform:
-    translateY(-2px);
-
+  transform:translateY(-2px);
 }
-
 
 .btn-white{
-
   background:white;
-
   color:#080b12;
-
   border-color:white;
-
 }
-
 
 .btn-dark{
-
-  background:
-    rgba(255,255,255,.025);
-
+  background:rgba(255,255,255,.025);
   color:white;
-
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
-
+/* HERO */
 
 .hero{
-
-  min-height:
-    calc(100vh - 70px);
-
+  min-height:calc(100vh - 70px);
   display:grid;
-
-  grid-template-columns:
-    1.08fr .92fr;
-
+  grid-template-columns:1.08fr .92fr;
   gap:65px;
-
   align-items:center;
-
-  padding:
-    85px 0;
-
+  padding:85px 0;
 }
-
 
 .eyebrow{
-
   display:inline-flex;
-
   align-items:center;
-
   gap:8px;
-
   margin-bottom:20px;
-
-  padding:
-    6px 11px;
-
-  border:
-    1px solid var(--border);
-
+  padding:6px 11px;
+  border:1px solid var(--border);
   border-radius:999px;
-
   color:var(--teal);
-
   font-size:.81rem;
-
 }
-
 
 .live-dot{
-
   width:7px;
   height:7px;
-
   background:var(--teal);
-
   border-radius:50%;
-
-  box-shadow:
-    0 0 14px var(--teal);
-
+  box-shadow:0 0 14px var(--teal);
 }
-
 
 .hero h1{
-
   margin-bottom:23px;
-
-  font-size:
-    clamp(3.2rem,8vw,6.3rem);
-
+  font-size:clamp(3.2rem,8vw,6.3rem);
   line-height:.94;
-
   letter-spacing:-.065em;
-
 }
-
 
 .gradient{
-
-  background:
-    linear-gradient(
-      90deg,
-      #fff,
-      #b9a7f6,
-      #82d6d1
-    );
-
+  background:linear-gradient(
+    90deg,
+    #fff,
+    #b9a7f6,
+    #82d6d1
+  );
   -webkit-background-clip:text;
-
   color:transparent;
-
 }
-
 
 .hero-copy{
-
   max-width:720px;
-
   margin-bottom:28px;
-
   color:var(--muted);
-
   font-size:1.08rem;
-
 }
-
 
 .hero-copy strong{
-
   color:white;
-
 }
 
-
-/* =====================================================
-   HERO IDENTITY
-===================================================== */
-
+/* HERO IDENTITY */
 
 .identity-orbit{
-
   position:relative;
-
   width:min(420px,88vw);
-
   aspect-ratio:1;
-
   margin:auto;
-
   display:grid;
   place-items:center;
-
-  border:
-    1px solid rgba(167,139,250,.19);
-
+  border:1px solid rgba(167,139,250,.19);
   border-radius:50%;
-
 }
-
 
 .identity-orbit::before{
-
   content:"";
-
   position:absolute;
-
   inset:15%;
-
-  border:
-    1px dashed rgba(112,211,204,.13);
-
+  border:1px dashed rgba(112,211,204,.13);
   border-radius:50%;
-
 }
-
 
 .identity-logo{
-
   position:relative;
-
   z-index:3;
-
-  width:71%;
-
+  width:66%;
   aspect-ratio:1;
-
   object-fit:cover;
-
   border-radius:50%;
-
-  box-shadow:
-    0 28px 80px rgba(0,0,0,.28);
-
+  box-shadow:0 28px 80px rgba(0,0,0,.28);
 }
-
 
 .identity-fallback{
-
   position:relative;
-
   z-index:3;
-
-  width:60%;
-
+  width:58%;
   aspect-ratio:1;
-
   display:none;
   place-items:center;
-
-  border:
-    1px solid var(--border2);
-
+  border:1px solid var(--border2);
   border-radius:50%;
-
-  font-size:
-    clamp(3rem,10vw,6rem);
-
+  font-size:clamp(3rem,10vw,6rem);
   font-weight:850;
-
   letter-spacing:-.08em;
-
   color:#d8e0ea;
-
-  background:
-    radial-gradient(
-      circle at 30% 25%,
-      #253449,
-      #111927
-    );
-
+  background:radial-gradient(
+    circle at 30% 25%,
+    #253449,
+    #111927
+  );
 }
-
 
 .orbit-label{
-
   position:absolute;
-
-  padding:
-    6px 9px;
-
-  border:
-    1px solid var(--border);
-
+  z-index:5;
+  padding:6px 10px;
+  border:1px solid var(--border);
   border-radius:999px;
-
   background:#0d131e;
-
   color:#adb7c6;
-
   font-size:.7rem;
-
+  white-space:nowrap;
 }
-
 
 .ol1{
-
-  top:10%;
-  left:38%;
-
+  top:2%;
+  left:50%;
+  transform:translateX(-50%);
 }
-
 
 .ol2{
-
-  top:46%;
-  right:-4%;
-
+  top:50%;
+  right:-8%;
+  transform:translateY(-50%);
 }
-
 
 .ol3{
-
-  bottom:8%;
-  left:36%;
-
+  bottom:2%;
+  left:50%;
+  transform:translateX(-50%);
 }
-
 
 .ol4{
-
-  top:46%;
-  left:-3%;
-
+  top:50%;
+  left:-8%;
+  transform:translateY(-50%);
 }
 
-
-/* =====================================================
-   GENERAL
-===================================================== */
-
+/* GENERAL */
 
 section{
-
-  padding:
-    100px 0;
-
+  padding:100px 0;
 }
-
 
 .section-head{
-
   max-width:760px;
-
   margin-bottom:42px;
-
 }
-
 
 .kicker{
-
   margin-bottom:9px;
-
   color:var(--purple);
-
   font-size:.75rem;
-
   font-weight:800;
-
   letter-spacing:.16em;
-
   text-transform:uppercase;
-
 }
-
 
 .section-title{
-
   margin-bottom:13px;
-
-  font-size:
-    clamp(2rem,5vw,3.35rem);
-
+  font-size:clamp(2rem,5vw,3.35rem);
   line-height:1.08;
-
   letter-spacing:-.045em;
-
 }
-
 
 .section-desc{
-
   color:var(--muted);
-
 }
-
 
 .card{
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.043),
-      rgba(255,255,255,.013)
-    );
-
-  border:
-    1px solid var(--border);
-
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.043),
+    rgba(255,255,255,.013)
+  );
+  border:1px solid var(--border);
   border-radius:var(--radius);
-
 }
 
-
-/* =====================================================
-   ABOUT
-===================================================== */
-
+/* ABOUT */
 
 .mindset{
-
   display:grid;
-
-  grid-template-columns:
-    auto 1fr;
-
+  grid-template-columns:auto 1fr;
   gap:24px;
-
   padding:35px;
-
 }
-
 
 .mindset-num{
-
-  color:
-    rgba(167,139,250,.27);
-
+  color:rgba(167,139,250,.27);
   font-size:3.4rem;
-
   font-weight:850;
-
   line-height:1;
-
 }
-
 
 .mindset p{
-
   color:var(--muted);
-
 }
 
-
-/* =====================================================
-   JOURNEY
-===================================================== */
-
+/* JOURNEY */
 
 .timeline{
-
   position:relative;
-
   padding-left:31px;
-
 }
 
-
 .timeline::before{
-
   content:"";
-
   position:absolute;
-
   left:7px;
   top:8px;
   bottom:8px;
-
   width:1px;
-
-  background:
-    linear-gradient(
-      var(--purple),
-      var(--teal)
-    );
-
+  background:linear-gradient(
+    var(--purple),
+    var(--teal)
+  );
   opacity:.45;
-
 }
-
 
 .timeline-item{
-
   position:relative;
-
-  padding:
-    0 0 43px 30px;
-
+  padding:0 0 43px 30px;
 }
-
 
 .timeline-dot{
-
   position:absolute;
-
   left:-29px;
   top:7px;
-
   width:13px;
   height:13px;
-
-  border:
-    3px solid var(--purple);
-
+  border:3px solid var(--purple);
   border-radius:50%;
-
   background:var(--bg);
-
 }
-
 
 .timeline-item small{
-
   color:var(--teal);
-
   font-weight:650;
-
 }
-
 
 .timeline-item h3{
-
-  margin:
-    5px 0;
-
+  margin:5px 0;
 }
-
 
 .timeline-item p{
-
   color:var(--muted);
-
   max-width:800px;
-
 }
 
-
-/* =====================================================
-   CAPABILITIES
-===================================================== */
-
+/* CAPABILITIES */
 
 .cap-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:17px;
-
 }
-
 
 .cap{
-
   padding:24px;
-
   transition:.22s;
-
 }
-
 
 .cap:hover{
-
-  transform:
-    translateY(-4px);
-
-  border-color:
-    rgba(167,139,250,.38);
-
+  transform:translateY(-4px);
+  border-color:rgba(167,139,250,.38);
 }
-
 
 .cap-label{
-
   margin-bottom:6px;
-
   color:var(--teal);
-
   font-size:.74rem;
-
   font-weight:800;
-
 }
-
 
 .cap p{
-
   color:var(--muted);
-
   font-size:.9rem;
-
 }
 
-
-/* =====================================================
-   PROJECTS
-===================================================== */
-
+/* PROJECTS */
 
 .project-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:19px;
-
 }
-
 
 .project{
-
   min-height:315px;
-
   padding:29px;
-
   display:flex;
-
   flex-direction:column;
-
   transition:.22s;
-
 }
-
 
 .project:hover{
-
-  transform:
-    translateY(-4px);
-
-  border-color:
-    rgba(167,139,250,.38);
-
+  transform:translateY(-4px);
+  border-color:rgba(167,139,250,.38);
 }
-
 
 .project-number{
-
   margin-bottom:35px;
-
-  color:
-    rgba(255,255,255,.26);
-
+  color:rgba(255,255,255,.26);
   font-family:monospace;
-
 }
-
 
 .project h3{
-
   margin-bottom:9px;
-
   font-size:1.28rem;
-
 }
-
 
 .project p{
-
   color:var(--muted);
-
   font-size:.92rem;
-
 }
-
 
 .tags{
-
   display:flex;
   flex-wrap:wrap;
-
   gap:7px;
-
   margin-top:auto;
-
   padding-top:20px;
-
 }
-
 
 .tag{
-
-  padding:
-    5px 8px;
-
-  border:
-    1px solid var(--border);
-
+  padding:5px 8px;
+  border:1px solid var(--border);
   border-radius:999px;
-
   color:#bbc4d1;
-
   font-size:.69rem;
-
 }
 
-
-/* =====================================================
-   CHALLENGE SHELL
-===================================================== */
-
+/* CHALLENGE */
 
 .challenge-shell{
-
   overflow:hidden;
-
-  border:
-    1px solid rgba(167,139,250,.25);
-
+  border:1px solid rgba(167,139,250,.25);
   border-radius:24px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17,23,36,.93),
-      rgba(8,12,20,.96)
-    );
-
+  background:linear-gradient(
+    145deg,
+    rgba(17,23,36,.93),
+    rgba(8,12,20,.96)
+  );
 }
-
 
 .challenge-intro{
-
-  padding:
-    28px 30px;
-
-  border-bottom:
-    1px solid var(--border);
-
+  padding:28px 30px;
+  border-bottom:1px solid var(--border);
 }
-
 
 .challenge-access{
-
   display:inline-flex;
-
   align-items:center;
-
   gap:7px;
-
   margin-bottom:11px;
-
   color:var(--teal);
-
   font-family:monospace;
-
   font-size:.72rem;
-
 }
-
 
 .challenge-intro h3{
-
   margin-bottom:7px;
-
-  font-size:
-    clamp(1.45rem,4vw,2.25rem);
-
+  font-size:clamp(1.45rem,4vw,2.25rem);
   line-height:1.15;
-
 }
-
 
 .challenge-intro p{
-
   max-width:800px;
-
   color:var(--muted);
-
 }
-
 
 .challenge-meta{
-
   display:flex;
   flex-wrap:wrap;
-
   gap:7px;
-
   margin-top:17px;
-
 }
-
 
 .challenge-chip{
-
-  padding:
-    5px 8px;
-
-  border:
-    1px solid var(--border);
-
+  padding:5px 8px;
+  border:1px solid var(--border);
   border-radius:999px;
-
   color:#bbc5d2;
-
   font-size:.69rem;
-
 }
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
-
 
 .challenge-progress{
-
-  padding:
-    14px 30px;
-
+  padding:14px 30px;
   display:flex;
-
   align-items:center;
-
   gap:14px;
-
-  border-bottom:
-    1px solid var(--border);
-
+  border-bottom:1px solid var(--border);
 }
-
 
 .progress-track{
-
   flex:1;
-
   height:5px;
-
-  background:
-    rgba(255,255,255,.05);
-
+  background:rgba(255,255,255,.05);
   border-radius:999px;
-
   overflow:hidden;
-
 }
-
 
 .progress-bar{
-
   width:0%;
-
   height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--purple),
-      var(--teal)
-    );
-
+  background:linear-gradient(
+    90deg,
+    var(--purple),
+    var(--teal)
+  );
   transition:.3s;
-
 }
-
 
 .progress-text{
-
   color:#dbe2ec;
-
   font-size:.76rem;
-
   white-space:nowrap;
-
 }
-
-
-/* =====================================================
-   CASE ACCORDION
-===================================================== */
-
 
 .case-list{
-
   padding:8px;
-
 }
-
 
 .case-details{
-
-  border-bottom:
-    1px solid var(--border);
-
+  border-bottom:1px solid var(--border);
 }
-
 
 .case-details:last-child{
-
   border-bottom:0;
-
 }
-
 
 .case-details summary{
-
   list-style:none;
-
-  padding:
-    18px 20px;
-
+  padding:18px 20px;
   display:grid;
-
-  grid-template-columns:
-    auto 1fr auto;
-
+  grid-template-columns:auto 1fr auto;
   gap:13px;
-
   align-items:center;
-
   cursor:pointer;
-
 }
-
 
 .case-details summary::-webkit-details-marker{
-
   display:none;
-
 }
-
 
 .case-number{
-
   color:var(--teal);
-
   font-family:monospace;
-
   font-size:.7rem;
-
 }
-
 
 .case-summary-title strong{
-
   display:block;
-
   font-size:.97rem;
-
 }
-
 
 .case-summary-title small{
-
   color:var(--muted);
-
 }
-
 
 .case-state{
-
   color:#8793a5;
-
   font-size:.7rem;
-
 }
-
 
 .case-details[open] .case-state{
-
   color:var(--purple);
-
 }
-
 
 .case-content{
-
-  padding:
-    2px 20px 24px 20px;
-
+  padding:2px 20px 24px 20px;
 }
-
 
 .case-brief{
-
   margin-bottom:19px;
-
   padding:16px;
-
-  border-left:
-    3px solid var(--purple);
-
-  border-radius:
-    0 11px 11px 0;
-
-  background:
-    rgba(167,139,250,.04);
-
+  border-left:3px solid var(--purple);
+  border-radius:0 11px 11px 0;
+  background:rgba(167,139,250,.04);
   color:var(--muted);
-
   font-size:.88rem;
-
 }
-
-
-/* =====================================================
-   EVIDENCE
-===================================================== */
-
 
 .evidence-box{
-
   margin-bottom:17px;
-
   padding:18px;
-
   overflow-x:auto;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:13px;
-
   background:#070b12;
-
 }
-
 
 .evidence-line{
-
   display:block;
-
-  margin:
-    5px 0;
-
+  margin:5px 0;
   white-space:nowrap;
-
   color:#aeb8c7;
-
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    monospace;
-
+  font-family:"SFMono-Regular",Consolas,monospace;
   font-size:.79rem;
-
 }
-
-
-/* =====================================================
-   CASE 01
-===================================================== */
-
 
 .artifact-tabs{
-
   display:flex;
   flex-wrap:wrap;
-
   gap:7px;
-
   margin-bottom:10px;
-
 }
-
 
 .artifact-tab{
-
-  padding:
-    8px 10px;
-
-  border:
-    1px solid var(--border);
-
+  padding:8px 10px;
+  border:1px solid var(--border);
   border-radius:9px;
-
-  background:
-    rgba(255,255,255,.018);
-
+  background:rgba(255,255,255,.018);
   color:#b7c0ce;
-
 }
-
 
 .artifact-tab.active{
-
-  border-color:
-    rgba(167,139,250,.45);
-
+  border-color:rgba(167,139,250,.45);
   color:white;
-
 }
-
-
-/* =====================================================
-   TASK
-===================================================== */
-
 
 .task-label{
-
   margin-bottom:6px;
-
   color:var(--teal);
-
   font-family:monospace;
-
   font-size:.68rem;
-
 }
-
 
 .task-question{
-
   margin-bottom:11px;
-
   font-weight:700;
-
 }
-
 
 .answer-row{
-
   display:flex;
-
   gap:9px;
-
 }
-
 
 .answer-input{
-
   flex:1;
-
   min-height:46px;
-
-  padding:
-    0 13px;
-
-  border:
-    1px solid var(--border);
-
+  padding:0 13px;
+  border:1px solid var(--border);
   border-radius:11px;
-
-  background:
-    rgba(255,255,255,.02);
-
+  background:rgba(255,255,255,.02);
   color:white;
-
   outline:none;
-
 }
-
 
 .answer-input:focus{
-
-  border-color:
-    rgba(167,139,250,.46);
-
+  border-color:rgba(167,139,250,.46);
 }
-
 
 .feedback{
-
   min-height:25px;
-
   margin-top:9px;
-
   color:var(--muted);
-
   font-size:.82rem;
-
 }
-
-
-/* =====================================================
-   CASE 02
-===================================================== */
-
 
 .timeline-builder{
-
   display:grid;
-
   gap:8px;
-
   margin-bottom:13px;
-
 }
-
 
 .timeline-event{
-
-  padding:
-    12px 13px;
-
+  padding:12px 13px;
   display:grid;
-
-  grid-template-columns:
-    auto 1fr;
-
+  grid-template-columns:auto 1fr;
   gap:10px;
-
   align-items:center;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:11px;
-
-  background:
-    rgba(255,255,255,.015);
-
+  background:rgba(255,255,255,.015);
   cursor:pointer;
-
 }
-
 
 .timeline-event.selected{
-
-  border-color:
-    rgba(167,139,250,.43);
-
-  background:
-    rgba(167,139,250,.05);
-
+  border-color:rgba(167,139,250,.43);
+  background:rgba(167,139,250,.05);
 }
-
 
 .event-order{
-
   width:27px;
   height:27px;
-
   display:grid;
   place-items:center;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:50%;
-
   color:#939eaf;
-
   font-family:monospace;
-
   font-size:.7rem;
-
 }
-
 
 .timeline-actions{
-
   display:flex;
   flex-wrap:wrap;
-
   gap:8px;
-
   margin-bottom:15px;
-
 }
-
-
-/* =====================================================
-   CASE 03
-===================================================== */
-
 
 .intel-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:10px;
-
   margin-bottom:15px;
-
 }
-
 
 .intel-card{
-
   padding:15px;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:12px;
-
-  background:
-    rgba(255,255,255,.013);
-
+  background:rgba(255,255,255,.013);
 }
-
 
 .intel-source{
-
   margin-bottom:7px;
-
   color:#8996a8;
-
   font-family:monospace;
-
   font-size:.65rem;
-
 }
-
 
 .intel-card h4{
-
   margin-bottom:6px;
-
 }
-
 
 .intel-card p{
-
   color:var(--muted);
-
   font-size:.8rem;
-
 }
-
-
-/* =====================================================
-   HINT
-===================================================== */
-
 
 .hint-button{
-
   margin-top:12px;
-
   padding:0;
-
   border:0;
-
   background:none;
-
   color:var(--purple);
-
   font-size:.8rem;
-
 }
-
 
 .hint-text{
-
   display:none;
-
   margin-top:7px;
-
   padding:10px;
-
-  border:
-    1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:9px;
-
   color:var(--muted);
-
   font-size:.79rem;
-
 }
-
-
-/* =====================================================
-   SOLVED
-===================================================== */
-
 
 .solved-box{
-
   display:none;
-
   margin-top:17px;
-
   padding:17px;
-
   text-align:center;
-
-  border:
-    1px solid rgba(112,211,204,.21);
-
+  border:1px solid rgba(112,211,204,.21);
   border-radius:13px;
-
-  background:
-    rgba(112,211,204,.035);
-
+  background:rgba(112,211,204,.035);
 }
-
 
 .flag{
-
-  margin:
-    11px auto;
-
+  margin:11px auto;
   padding:13px;
-
-  border:
-    1px solid rgba(167,139,250,.36);
-
+  border:1px solid rgba(167,139,250,.36);
   border-radius:10px;
-
   background:#070b12;
-
   color:#c8b8ff;
-
   font-family:monospace;
-
   overflow-wrap:anywhere;
-
 }
-
 
 .case-stats{
-
   margin-top:7px;
-
   color:var(--muted);
-
   font-size:.79rem;
-
 }
-
-
-/* =====================================================
-   CLAIM
-===================================================== */
-
 
 .claim-box{
-
   display:none;
-
-  margin:
-    0 28px 28px 28px;
-
-  padding:
-    21px;
-
-  border:
-    1px solid var(--border);
-
+  margin:0 28px 28px 28px;
+  padding:21px;
+  border:1px solid var(--border);
   border-radius:15px;
-
-  background:
-    rgba(255,255,255,.018);
-
+  background:rgba(255,255,255,.018);
 }
-
 
 .claim-box h3{
-
   margin-bottom:5px;
-
 }
-
 
 .claim-box p{
-
   margin-bottom:12px;
-
   color:var(--muted);
-
   font-size:.82rem;
-
 }
-
 
 .claim-grid{
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:8px;
-
 }
-
 
 .claim-grid input{
-
   min-height:43px;
-
-  padding:
-    0 11px;
-
-  border:
-    1px solid var(--border);
-
+  padding:0 11px;
+  border:1px solid var(--border);
   border-radius:9px;
-
   background:#0a1019;
-
   color:white;
-
 }
-
-
-/* =====================================================
-   CONTACT
-===================================================== */
-
 
 .contact{
-
   padding:43px;
-
   text-align:center;
-
 }
-
 
 .contact p{
-
   max-width:650px;
-
-  margin:
-    10px auto 20px;
-
+  margin:10px auto 20px;
   color:var(--muted);
-
 }
-
 
 .contact-buttons{
-
   display:flex;
   flex-wrap:wrap;
-
   justify-content:center;
-
   gap:10px;
-
 }
-
-
-/* =====================================================
-   SCROLL TOP
-===================================================== */
-
 
 .scroll-top{
-
   position:fixed;
-
   right:20px;
   bottom:22px;
-
   z-index:200;
-
   width:46px;
   height:46px;
-
   display:grid;
   place-items:center;
-
-  border:
-    1px solid rgba(255,255,255,.13);
-
+  border:1px solid rgba(255,255,255,.13);
   border-radius:50%;
-
   background:white;
-
   color:#080b12;
-
   font-size:1.15rem;
-
   font-weight:900;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.28);
-
+  box-shadow:0 15px 35px rgba(0,0,0,.28);
   opacity:0;
-
   pointer-events:none;
-
-  transform:
-    translateY(10px);
-
+  transform:translateY(10px);
   transition:.2s;
-
 }
-
 
 .scroll-top.show{
-
   opacity:1;
-
   pointer-events:auto;
-
-  transform:
-    translateY(0);
-
+  transform:translateY(0);
 }
-
 
 footer{
-
-  padding:
-    35px 0;
-
-  border-top:
-    1px solid var(--border);
-
+  padding:35px 0;
+  border-top:1px solid var(--border);
   text-align:center;
-
   color:#697588;
-
   font-size:.8rem;
-
 }
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
 
 @media(max-width:900px){
 
   .hero{
-
     grid-template-columns:1fr;
-
   }
-
 
   .cap-grid{
-
-    grid-template-columns:
-      repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
   }
-
 
   .project-grid{
-
     grid-template-columns:1fr;
-
   }
 
-
   .intel-grid{
-
     grid-template-columns:1fr;
-
   }
 
 }
 
-
 @media(max-width:650px){
 
   .nav-links{
-
     display:none;
-
   }
-
 
   section{
-
-    padding:
-      72px 0;
-
+    padding:72px 0;
   }
-
 
   .mindset{
-
     grid-template-columns:1fr;
-
   }
-
 
   .cap-grid{
-
     grid-template-columns:1fr;
-
   }
-
 
   .case-details summary{
-
-    grid-template-columns:
-      auto 1fr;
-
+    grid-template-columns:auto 1fr;
   }
-
 
   .case-state{
-
     grid-column:2;
-
   }
-
 
   .answer-row{
-
     flex-direction:column;
-
   }
-
 
   .claim-grid{
-
     grid-template-columns:1fr;
-
   }
-
 
   .challenge-progress{
-
-    padding:
-      13px 20px;
-
+    padding:13px 20px;
   }
 
-
   .challenge-intro{
+    padding:24px 20px;
+  }
 
-    padding:
-      24px 20px;
+  .identity-orbit{
+    width:min(360px,86vw);
+    margin-top:30px;
+    margin-bottom:30px;
+  }
 
+  .identity-logo{
+    width:63%;
+  }
+
+  .identity-fallback{
+    width:56%;
+  }
+
+  .ol1{
+    top:-5%;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .ol2{
+    top:50%;
+    right:-1%;
+    transform:translateY(-50%);
+  }
+
+  .ol3{
+    bottom:-5%;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .ol4{
+    top:50%;
+    left:-1%;
+    transform:translateY(-50%);
   }
 
 }
@@ -1972,19 +1060,11 @@ footer{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     NAV
-===================================================== -->
-
 
 <nav>
 
 <div class="container nav-inner">
-
 
 <a
   class="brand"
@@ -2001,7 +1081,6 @@ footer{
   "
 >
 
-
 <span
   id="navFallback"
   class="brand-fallback"
@@ -2009,35 +1088,19 @@ footer{
 FA
 </span>
 
-
 <span>
 Fatima Almuhamidh
 </span>
 
 </a>
 
-
 <div class="nav-links">
 
-<a href="#about">
-About
-</a>
-
-<a href="#experience">
-Journey
-</a>
-
-<a href="#projects">
-Projects
-</a>
-
-<a href="#challenge">
-Challenge
-</a>
-
-<a href="#contact">
-Contact
-</a>
+<a href="#about">About</a>
+<a href="#experience">Journey</a>
+<a href="#projects">Projects</a>
+<a href="#challenge">Challenge</a>
+<a href="#contact">Contact</a>
 
 </div>
 
@@ -2049,16 +1112,9 @@ Contact
 <main class="container">
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-
 <section class="hero">
 
-
 <div>
-
 
 <div class="eyebrow">
 
@@ -2067,7 +1123,6 @@ Contact
 Cybersecurity · DFIR · Threat Intelligence
 
 </div>
-
 
 <h1>
 
@@ -2079,24 +1134,17 @@ Almuhamidh.
 
 </h1>
 
-
 <p class="hero-copy">
 
 I turn
-
-<strong>
-digital traces into investigative stories
-</strong>
-
+<strong>digital traces into investigative stories</strong>
 — from forensic artifacts and security logs to
 threat intelligence, incident analysis,
 and actionable findings.
 
 </p>
 
-
 <div class="buttons">
-
 
 <a
   class="btn btn-white"
@@ -2105,14 +1153,12 @@ and actionable findings.
 Take the Challenge
 </a>
 
-
 <a
   class="btn btn-dark"
   href="#projects"
 >
 Explore My Work
 </a>
-
 
 </div>
 
@@ -2121,26 +1167,21 @@ Explore My Work
 
 <div class="identity-orbit">
 
-
 <span class="orbit-label ol1">
 Registry
 </span>
-
 
 <span class="orbit-label ol2">
 Network
 </span>
 
-
 <span class="orbit-label ol3">
 Threat Intel
 </span>
 
-
 <span class="orbit-label ol4">
 Logs
 </span>
-
 
 <img
   src="assets/fa-logo.png.PNG"
@@ -2152,7 +1193,6 @@ Logs
   "
 >
 
-
 <div
   id="heroFallback"
   class="identity-fallback"
@@ -2160,65 +1200,45 @@ Logs
 FA
 </div>
 
-
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-
 <section id="about">
 
-
 <div class="section-head">
-
 
 <div class="kicker">
 Investigation Mindset
 </div>
 
-
 <h2 class="section-title">
-
 Evidence first.
 Assumptions second.
-
 </h2>
-
 
 </div>
 
-
 <div class="card mindset">
-
 
 <div class="mindset-num">
 01
 </div>
 
-
 <div>
-
 
 <h3>
 How I approach a security investigation
 </h3>
 
-
 <p>
-
 I start with the artifact, validate its context,
 correlate it with surrounding activity, and reconstruct
 the story behind the evidence. My interests sit at the
 intersection of digital forensics, incident response,
 threat intelligence, and security analysis.
-
 </p>
-
 
 </div>
 
@@ -2227,117 +1247,83 @@ threat intelligence, and security analysis.
 </section>
 
 
-<!-- =====================================================
-     JOURNEY
-===================================================== -->
-
-
 <section id="experience">
 
-
 <div class="section-head">
-
 
 <div class="kicker">
 Journey
 </div>
 
-
 <h2 class="section-title">
 Building through investigation.
 </h2>
 
-
 </div>
-
 
 <div class="timeline">
 
-
 <div class="timeline-item">
 
-
 <span class="timeline-dot"></span>
-
 
 <small>
 Academic Foundation
 </small>
 
-
 <h3>
 Information Technology — Honors Graduate
 </h3>
 
-
 <p>
-
 Built a technical foundation across computing,
 systems, development, networking, and information
 technology before specializing further in cybersecurity
 and digital investigations.
-
 </p>
-
 
 </div>
 
-
 <div class="timeline-item">
 
-
 <span class="timeline-dot"></span>
-
 
 <small>
 Tuwaiq Academy · 360 Hours
 </small>
 
-
 <h3>
 Advanced Cybercrime & Digital Forensics Bootcamp
 </h3>
 
-
 <p>
-
 Hands-on training covering digital forensics,
 incident response, malware analysis, network traffic
 analysis, cyber threat intelligence, security monitoring,
 and investigative reporting.
-
 </p>
-
 
 </div>
 
-
 <div class="timeline-item">
 
-
 <span class="timeline-dot"></span>
-
 
 <small>
 KACST
 </small>
 
-
 <h3>
 Digital Forensics & Cybersecurity Training
 </h3>
 
-
 <p>
-
 Conducted forensic analysis of Windows-based devices,
 examined registry artifacts, logs, USB activity,
 installed applications and persistence indicators,
 investigated security risks, and prepared technical
 findings and recommendations.
-
 </p>
-
 
 </div>
 
@@ -2346,32 +1332,21 @@ findings and recommendations.
 </section>
 
 
-<!-- =====================================================
-     CAPABILITIES
-===================================================== -->
-
-
 <section>
 
-
 <div class="section-head">
-
 
 <div class="kicker">
 Capabilities
 </div>
 
-
 <h2 class="section-title">
 More than a list of tools.
 </h2>
 
-
 </div>
 
-
 <div class="cap-grid">
-
 
 <article class="card cap">
 
@@ -2390,7 +1365,6 @@ Windows Artifacts · Registry Analysis · Timeline Analysis
 
 </article>
 
-
 <article class="card cap">
 
 <div class="cap-label">
@@ -2407,7 +1381,6 @@ Investigation Workflows · Technical Reporting
 </p>
 
 </article>
-
 
 <article class="card cap">
 
@@ -2426,7 +1399,6 @@ IOC Enrichment · Threat Correlation
 
 </article>
 
-
 <article class="card cap">
 
 <div class="cap-label">
@@ -2443,7 +1415,6 @@ Suspicious Traffic Identification
 </p>
 
 </article>
-
 
 <article class="card cap">
 
@@ -2462,7 +1433,6 @@ YARA · MITRE ATT&CK Mapping
 
 </article>
 
-
 <article class="card cap">
 
 <div class="cap-label">
@@ -2480,330 +1450,200 @@ Log Analysis · Detection Analysis · Security Event Investigation
 
 </article>
 
-
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     PROJECTS
-===================================================== -->
-
-
 <section id="projects">
 
-
 <div class="section-head">
-
 
 <div class="kicker">
 Selected Work
 </div>
 
-
 <h2 class="section-title">
 Investigations, systems, and ideas.
 </h2>
 
-
 </div>
-
 
 <div class="project-grid">
 
-
 <article class="card project">
-
 
 <div class="project-number">
 PROJECT / 01
 </div>
 
-
 <h3>
 CryptoTrace
 </h3>
 
-
 <p>
-
 A DFIR platform designed to detect and investigate
 cryptojacking activity through system and network
 evidence, threat intelligence, correlation,
 rule-based detection, and AI-assisted analysis.
-
 </p>
-
 
 <div class="tags">
 
-<span class="tag">
-DFIR
-</span>
-
-<span class="tag">
-Cryptojacking
-</span>
-
-<span class="tag">
-Threat Intelligence
-</span>
-
-<span class="tag">
-AI
-</span>
+<span class="tag">DFIR</span>
+<span class="tag">Cryptojacking</span>
+<span class="tag">Threat Intelligence</span>
+<span class="tag">AI</span>
 
 </div>
-
 
 </article>
 
 
 <article class="card project">
-
 
 <div class="project-number">
 PROJECT / 02
 </div>
 
-
 <h3>
 Multi-Campaign Threat Intelligence Analysis
 </h3>
 
-
 <p>
-
 Investigated and correlated indicators across multiple
 threat campaigns using MISP, TheHive, Cortex,
 IOC enrichment, and MITRE ATT&CK mapping.
-
 </p>
-
 
 <div class="tags">
 
-<span class="tag">
-MISP
-</span>
-
-<span class="tag">
-TheHive
-</span>
-
-<span class="tag">
-Cortex
-</span>
-
-<span class="tag">
-MITRE ATT&CK
-</span>
+<span class="tag">MISP</span>
+<span class="tag">TheHive</span>
+<span class="tag">Cortex</span>
+<span class="tag">MITRE ATT&CK</span>
 
 </div>
-
 
 </article>
 
 
 <article class="card project">
-
 
 <div class="project-number">
 PROJECT / 03
 </div>
 
-
 <h3>
 Trojan.Doina Loader / RAT Analysis
 </h3>
 
-
 <p>
-
 Performed static and dynamic malware analysis,
 extracted indicators of compromise, documented
 observed behavior, and mapped techniques to
 MITRE ATT&CK.
-
 </p>
-
 
 <div class="tags">
 
-<span class="tag">
-Malware Analysis
-</span>
-
-<span class="tag">
-IOC Analysis
-</span>
-
-<span class="tag">
-YARA
-</span>
+<span class="tag">Malware Analysis</span>
+<span class="tag">IOC Analysis</span>
+<span class="tag">YARA</span>
 
 </div>
-
 
 </article>
 
 
 <article class="card project">
 
-
 <div class="project-number">
 PROJECT / 04
 </div>
-
 
 <h3>
 TA551 / Ursnif Malware Traffic Investigation — Italian Network
 </h3>
 
-
 <p>
-
 Investigated malicious PCAP traffic from an Italian
 network environment associated with TA551 / Ursnif
 activity. Identified infected-host behavior,
 suspicious connections, IOCs, and malware-related
 network patterns while reconstructing key events.
-
 </p>
-
 
 <div class="tags">
 
-<span class="tag">
-Wireshark
-</span>
-
-<span class="tag">
-PCAP
-</span>
-
-<span class="tag">
-Network Forensics
-</span>
-
-<span class="tag">
-TA551
-</span>
-
-<span class="tag">
-Ursnif
-</span>
+<span class="tag">Wireshark</span>
+<span class="tag">PCAP</span>
+<span class="tag">Network Forensics</span>
+<span class="tag">TA551</span>
+<span class="tag">Ursnif</span>
 
 </div>
 
-
 </article>
-
 
 </div>
 
 </section>
 
 
-<!-- =====================================================
-     CHALLENGE
-===================================================== -->
-
-
 <section id="challenge">
 
-
 <div class="section-head">
-
 
 <div class="kicker">
 Interactive Investigation
 </div>
 
-
 <h2 class="section-title">
-
 Most visitors scroll.
 You investigate.
-
 </h2>
 
-
 <p class="section-desc">
-
 Three short cases.
 Three different analyst instincts.
 Recover all three flags.
-
 </p>
 
-
 </div>
-
 
 <div class="challenge-shell">
 
-
 <div class="challenge-intro">
 
-
 <div class="challenge-access">
-
 ● INVESTIGATION LAB // ACCESS GRANTED
-
 </div>
 
-
 <h3>
-
 The evidence is here.
 Find what matters.
-
 </h3>
 
-
 <p>
-
 Explore forensic artifacts,
 reconstruct an incident,
 and correlate threat intelligence.
 Switch between cases at any time.
-
 </p>
-
 
 <div class="challenge-meta">
 
-
-<span class="challenge-chip">
-3 cases
-</span>
-
-
-<span class="challenge-chip">
-3 investigation styles
-</span>
-
-
-<span class="challenge-chip">
-Hints available
-</span>
-
-
-<span class="challenge-chip">
-Replay anytime
-</span>
-
+<span class="challenge-chip">3 cases</span>
+<span class="challenge-chip">3 investigation styles</span>
+<span class="challenge-chip">Hints available</span>
+<span class="challenge-chip">Replay anytime</span>
 
 </div>
 
-
 </div>
-
 
 <div class="challenge-progress">
-
 
 <div class="progress-track">
 
@@ -2814,7 +1654,6 @@ Replay anytime
 
 </div>
 
-
 <div
   id="progressText"
   class="progress-text"
@@ -2822,16 +1661,10 @@ Replay anytime
 0 / 3 solved
 </div>
 
-
 </div>
 
 
 <div class="case-list">
-
-
-<!-- =====================================================
-     CASE 01
-===================================================== -->
 
 
 <details
@@ -2839,30 +1672,23 @@ Replay anytime
   id="details-case01"
 >
 
-
 <summary>
-
 
 <span class="case-number">
 CASE 01
 </span>
 
-
 <span class="case-summary-title">
-
 
 <strong>
 Artifact Hunt
 </strong>
 
-
 <small>
 Windows DFIR · Easy–Medium
 </small>
 
-
 </span>
-
 
 <span
   id="status-case01"
@@ -2871,50 +1697,37 @@ Windows DFIR · Easy–Medium
 OPEN CASE
 </span>
 
-
 </summary>
-
 
 <div class="case-content">
 
-
 <div class="case-brief">
-
 A Windows workstation showed suspicious activity shortly
 after logon. Triage evidence was collected from several
 artifact categories. Identify the artifact that could
 relaunch an executable automatically on future logons.
-
 </div>
-
 
 <div
   id="artifactTabs"
   class="artifact-tabs"
 ></div>
 
-
 <div
   id="artifactViewer"
   class="evidence-box"
 ></div>
 
-
 <div class="task-label">
 // FINDING
 </div>
 
-
 <div class="task-question">
-
 Identify the persistence mechanism
 or its registry path.
-
 </div>
 
-
 <div class="answer-row">
-
 
 <input
   id="answer1"
@@ -2923,7 +1736,6 @@ or its registry path.
   autocomplete="off"
 >
 
-
 <button
   class="btn btn-white"
   onclick="submitCase1()"
@@ -2931,15 +1743,12 @@ or its registry path.
 Validate
 </button>
 
-
 </div>
-
 
 <div
   id="feedback1"
   class="feedback"
 ></div>
-
 
 <button
   class="hint-button"
@@ -2948,35 +1757,28 @@ Validate
 Need a hint?
 </button>
 
-
 <div
   id="hint1"
   class="hint-text"
 >
-
 Look for a Windows artifact commonly used
 to launch a program automatically when
 a user signs in.
-
 </div>
-
 
 <div
   id="solved-case01"
   class="solved-box"
 >
 
-
 <strong>
 Case solved.
 </strong>
-
 
 <div
   id="flag-case01"
   class="flag"
 ></div>
-
 
 <p
   id="stats-case01"
@@ -2985,19 +1787,11 @@ Case solved.
 Loading investigator stats...
 </p>
 
-
 </div>
 
-
 </div>
-
 
 </details>
-
-
-<!-- =====================================================
-     CASE 02
-===================================================== -->
 
 
 <details
@@ -3005,30 +1799,23 @@ Loading investigator stats...
   id="details-case02"
 >
 
-
 <summary>
-
 
 <span class="case-number">
 CASE 02
 </span>
 
-
 <span class="case-summary-title">
-
 
 <strong>
 Incident Reconstruction
 </strong>
 
-
 <small>
 Incident Response · Medium
 </small>
 
-
 </span>
-
 
 <span
   id="status-case02"
@@ -3037,36 +1824,27 @@ Incident Response · Medium
 OPEN CASE
 </span>
 
-
 </summary>
-
 
 <div class="case-content">
 
-
 <div class="case-brief">
-
 Four related events were recovered from a compromised
 workstation, but their original order was lost.
 Use process relationships and event causality to
 reconstruct the sequence. No timestamps are available.
-
 </div>
-
 
 <div class="task-label">
 // STEP 1 — BUILD THE TIMELINE
 </div>
-
 
 <div
   id="timelineEvents"
   class="timeline-builder"
 ></div>
 
-
 <div class="timeline-actions">
-
 
 <button
   class="btn btn-dark"
@@ -3075,7 +1853,6 @@ reconstruct the sequence. No timestamps are available.
 Reset
 </button>
 
-
 <button
   class="btn btn-dark"
   onclick="validateTimeline()"
@@ -3083,39 +1860,28 @@ Reset
 Check Timeline
 </button>
 
-
 </div>
-
 
 <div
   id="timelineFeedback"
   class="feedback"
 ></div>
 
-
 <div
   id="case2Attribution"
   style="display:none;"
 >
 
-
 <div class="task-label">
-
 // STEP 2 — ATTRIBUTE THE CONNECTION
-
 </div>
-
 
 <div class="task-question">
-
 Which process directly initiated
 the outbound connection?
-
 </div>
 
-
 <div class="answer-row">
-
 
 <input
   id="answer2"
@@ -3124,7 +1890,6 @@ the outbound connection?
   autocomplete="off"
 >
 
-
 <button
   class="btn btn-white"
   onclick="submitCase2()"
@@ -3132,18 +1897,14 @@ the outbound connection?
 Validate
 </button>
 
-
 </div>
-
 
 <div
   id="feedback2"
   class="feedback"
 ></div>
 
-
 </div>
-
 
 <button
   class="hint-button"
@@ -3152,35 +1913,28 @@ Validate
 Need a hint?
 </button>
 
-
 <div
   id="hint2"
   class="hint-text"
 >
-
 Begin with the user-opened document.
 Then follow parent-child process behavior,
 network activity, and the resulting file creation.
-
 </div>
-
 
 <div
   id="solved-case02"
   class="solved-box"
 >
 
-
 <strong>
 Case solved.
 </strong>
-
 
 <div
   id="flag-case02"
   class="flag"
 ></div>
-
 
 <p
   id="stats-case02"
@@ -3189,19 +1943,11 @@ Case solved.
 Loading investigator stats...
 </p>
 
-
 </div>
 
-
 </div>
-
 
 </details>
-
-
-<!-- =====================================================
-     CASE 03
-===================================================== -->
 
 
 <details
@@ -3209,30 +1955,23 @@ Loading investigator stats...
   id="details-case03"
 >
 
-
 <summary>
-
 
 <span class="case-number">
 CASE 03
 </span>
 
-
 <span class="case-summary-title">
-
 
 <strong>
 Threat Correlation
 </strong>
 
-
 <small>
 Threat Intelligence · Hard
 </small>
 
-
 </span>
-
 
 <span
   id="status-case03"
@@ -3241,130 +1980,92 @@ Threat Intelligence · Hard
 OPEN CASE
 </span>
 
-
 </summary>
-
 
 <div class="case-content">
 
-
 <div class="case-brief">
-
 Three intelligence sources describe a campaign,
 a malware family, and infrastructure observed
 during the same investigation window.
 Correlate them and identify the domain
 that links the malware to the campaign.
-
 </div>
-
 
 <div class="intel-grid">
 
-
 <div class="intel-card">
-
 
 <div class="intel-source">
 SOURCE A // CAMPAIGN
 </div>
 
-
 <h4>
 ORBITAL
 </h4>
 
-
 <p>
-
 Known infrastructure included
-
-<strong>
-sync-cloud[.]example
-</strong>,
-
+<strong>sync-cloud[.]example</strong>,
 which resolved to
 203.0.113.42 during
 the investigation window.
-
 </p>
-
 
 </div>
 
-
 <div class="intel-card">
-
 
 <div class="intel-source">
 SOURCE B // MALWARE
 </div>
 
-
 <h4>
 DriftLoader
 </h4>
 
-
 <p>
-
 A sample matching hash
 9f21...a8c4 established outbound TLS
 communication with 203.0.113.42
 shortly after execution.
-
 </p>
-
 
 </div>
 
-
 <div class="intel-card">
-
 
 <div class="intel-source">
 SOURCE C // ENRICHMENT
 </div>
 
-
 <h4>
 Passive DNS
 </h4>
 
-
 <p>
-
 203.0.113.42 resolved to
 sync-cloud[.]example during the same period.
 
 static-update[.]example and
 cdn-auth-check[.]example
 resolved to unrelated addresses.
-
 </p>
 
-
 </div>
 
-
 </div>
-
 
 <div class="task-label">
 // CORRELATION
 </div>
 
-
 <div class="task-question">
-
 Which domain completes the
 malware-to-campaign relationship?
-
 </div>
 
-
 <div class="answer-row">
-
 
 <input
   id="answer3"
@@ -3373,7 +2074,6 @@ malware-to-campaign relationship?
   autocomplete="off"
 >
 
-
 <button
   class="btn btn-white"
   onclick="submitCase3()"
@@ -3381,15 +2081,12 @@ malware-to-campaign relationship?
 Validate
 </button>
 
-
 </div>
-
 
 <div
   id="feedback3"
   class="feedback"
 ></div>
-
 
 <button
   class="hint-button"
@@ -3398,34 +2095,27 @@ Validate
 Need a hint?
 </button>
 
-
 <div
   id="hint3"
   class="hint-text"
 >
-
 Correlate the IP contacted by the malware
 with passive DNS and campaign infrastructure.
-
 </div>
-
 
 <div
   id="solved-case03"
   class="solved-box"
 >
 
-
 <strong>
 Case solved.
 </strong>
-
 
 <div
   id="flag-case03"
   class="flag"
 ></div>
-
 
 <p
   id="stats-case03"
@@ -3434,22 +2124,13 @@ Case solved.
 Loading investigator stats...
 </p>
 
-
 </div>
 
-
 </div>
-
 
 </details>
 
-
 </div>
-
-
-<!-- =====================================================
-     CLAIM YOUR WIN
-===================================================== -->
 
 
 <div
@@ -3457,44 +2138,34 @@ Loading investigator stats...
   class="claim-box"
 >
 
-
 <h3>
 Claim Your Win
 </h3>
 
-
 <p>
-
 Solved at least one investigation?
 If you'd like, leave your name or LinkedIn
 so I know who found the flag.
 
 Your information is optional
 and is not displayed publicly.
-
 </p>
 
-
 <div class="claim-grid">
-
 
 <input
   id="claimName"
   placeholder="Name (optional)"
 >
 
-
 <input
   id="claimLinkedIn"
   placeholder="LinkedIn profile URL (optional)"
 >
 
-
 </div>
 
-
 <div style="margin-top:10px;">
-
 
 <button
   class="btn btn-white"
@@ -3503,59 +2174,41 @@ and is not displayed publicly.
 Claim Your Win
 </button>
 
-
 </div>
-
 
 <div
   id="claimFeedback"
   class="feedback"
 ></div>
 
-
 </div>
 
-
 </div>
-
 
 </section>
 
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-
 <section id="contact">
 
-
 <div class="card contact">
-
 
 <div class="kicker">
 Contact
 </div>
 
-
 <h2 class="section-title">
 Let's connect the evidence.
 </h2>
 
-
 <p>
-
 Interested in DFIR,
 incident response,
 threat intelligence,
 security investigations,
 or the challenge you just solved?
-
 </p>
 
-
 <div class="contact-buttons">
-
 
 <a
   class="btn btn-white"
@@ -3566,7 +2219,6 @@ or the challenge you just solved?
 GitHub
 </a>
 
-
 <a
   class="btn btn-white"
   href="https://www.linkedin.com/in/fatima-almuhamidh-a5a09833b"
@@ -3576,7 +2228,6 @@ GitHub
 LinkedIn
 </a>
 
-
 <a
   class="btn btn-white"
   href="mailto:Fatima.Almuhamidh@gmail.com"
@@ -3584,23 +2235,17 @@ LinkedIn
 Email
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
-
 
 </main>
 
 
 <footer>
-
 © 2026 Fatima Almuhamidh · Follow the evidence.
-
 </footer>
 
 
@@ -3616,70 +2261,40 @@ Email
 
 <script>
 
-
-/* =====================================================
-   BACKEND
-===================================================== */
-
-
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyxIBfX60VKcKKqztg9XZjDQkXQOxMky0shlzfIhZ_9ND-Hyb6XcnCZhJsqm7W8hLGL/exec";
 
-
 const CHALLENGE_SET_VERSION = 1;
-
 
 const STORAGE_KEY =
   "fatimaPortfolioChallengeSet";
 
-
 const VISITOR_KEY =
   "fatimaPortfolioVisitorId";
 
-
-/* =====================================================
-   FLAGS
-===================================================== */
-
-
 const FLAGS = {
-
 
   case01:
     "FATIMA_FLAG{YOU_FOUND_WHAT_OTHERS_MISSED}",
 
-
   case02:
     "FATIMA_FLAG{YOU_THOUGHT_LIKE_AN_INVESTIGATOR}",
-
 
   case03:
     "FATIMA_FLAG{YOU_FOUND_THE_MISSING_PIECE}"
 
-
 };
 
-
-/* =====================================================
-   VISITOR ID
-===================================================== */
-
-
 function getVisitorId(){
-
 
   var existing =
     localStorage.getItem(
       VISITOR_KEY
     );
 
-
   if(existing){
-
     return existing;
-
   }
-
 
   var id =
     "visitor-" +
@@ -3689,47 +2304,31 @@ function getVisitorId(){
       .toString(36)
       .substring(2,10);
 
-
   localStorage.setItem(
     VISITOR_KEY,
     id
   );
 
-
   return id;
 
 }
 
-
 const VISITOR_ID =
   getVisitorId();
 
-
-/* =====================================================
-   STATE
-===================================================== */
-
-
 function defaultState(){
 
-
   return{
-
     version:
       CHALLENGE_SET_VERSION,
-
     solved:[]
-
   };
 
 }
 
-
 function loadState(){
 
-
   try{
-
 
     var stored =
       JSON.parse(
@@ -3738,41 +2337,31 @@ function loadState(){
         )
       );
 
-
     if(
       !stored ||
       stored.version !==
       CHALLENGE_SET_VERSION
     ){
-
       return defaultState();
-
     }
-
 
     return Object.assign(
       defaultState(),
       stored
     );
 
-
   }catch(error){
 
-
     return defaultState();
-
 
   }
 
 }
 
-
 var state =
   loadState();
 
-
 function saveState(){
-
 
   localStorage.setItem(
     STORAGE_KEY,
@@ -3783,20 +2372,12 @@ function saveState(){
 
 }
 
-
-/* =====================================================
-   SEND EVENT
-===================================================== */
-
-
 function sendEvent(
   caseId,
   eventName
 ){
 
-
   try{
-
 
     fetch(
       API_URL,
@@ -3833,31 +2414,20 @@ function sendEvent(
       }
     );
 
-
   }catch(error){
-
 
     console.log(
       "Analytics event failed",
       error
     );
 
-
   }
 
 }
 
-
-/* =====================================================
-   LOAD STATS
-===================================================== */
-
-
 async function loadStats(){
 
-
   try{
-
 
     var response =
       await fetch(
@@ -3865,101 +2435,80 @@ async function loadStats(){
         "?action=stats"
       );
 
-
     var data =
       await response.json();
-
 
     if(
       !data ||
       !data.ok ||
       !data.stats
     ){
-
       return;
-
     }
-
 
     updateCaseStats(
       "case01",
       data.stats.case01
     );
 
-
     updateCaseStats(
       "case02",
       data.stats.case02
     );
-
 
     updateCaseStats(
       "case03",
       data.stats.case03
     );
 
-
   }catch(error){
-
 
     console.log(
       "Stats unavailable",
       error
     );
 
-
   }
 
 }
-
 
 function updateCaseStats(
   caseId,
   stats
 ){
 
-
   var element =
     document.getElementById(
       "stats-" + caseId
     );
 
-
   if(
     !element ||
     !stats
   ){
-
     return;
-
   }
-
 
   var opened =
     Number(
       stats.opened || 0
     );
 
-
   var solved =
     Number(
       stats.solved || 0
     );
 
-
   if(
     opened <= 0
   ){
 
-
     element.textContent =
       "Be the first investigator to open this case.";
-
 
     return;
 
   }
-
 
   element.textContent =
     solved +
@@ -3967,17 +2516,9 @@ function updateCaseStats(
     opened +
     " investigators solved this case.";
 
-
 }
 
-
-/* =====================================================
-   NORMALIZE
-===================================================== */
-
-
 function normalize(value){
-
 
   return String(
     value || ""
@@ -3999,18 +2540,10 @@ function normalize(value){
 
 }
 
-
-/* =====================================================
-   UPDATE PROGRESS
-===================================================== */
-
-
 function updateProgress(){
-
 
   var count =
     state.solved.length;
-
 
   document
     .getElementById(
@@ -4020,7 +2553,6 @@ function updateProgress(){
       count +
       " / 3 solved";
 
-
   document
     .getElementById(
       "progressBar"
@@ -4028,7 +2560,6 @@ function updateProgress(){
     .style.width =
       ((count / 3) * 100) +
       "%";
-
 
   [
     "case01",
@@ -4038,69 +2569,49 @@ function updateProgress(){
   .forEach(
     function(id){
 
-
       var solved =
         state.solved.includes(
           id
         );
-
 
       var status =
         document.getElementById(
           "status-" + id
         );
 
-
       var box =
         document.getElementById(
           "solved-" + id
         );
-
 
       var flag =
         document.getElementById(
           "flag-" + id
         );
 
-
       if(solved){
-
 
         status.textContent =
           "FLAG RECOVERED ✓";
 
-
         box.style.display =
           "block";
-
 
         flag.textContent =
           FLAGS[id];
 
-
       }else{
-
 
         status.textContent =
           "OPEN CASE";
 
-
         box.style.display =
           "none";
 
-
       }
-
 
     }
   );
-
-
-  /*
-    Claim appears after
-    solving at least 1 case.
-  */
-
 
   document
     .getElementById(
@@ -4108,19 +2619,10 @@ function updateProgress(){
     )
     .style.display =
       count >= 1
-      ?
-      "block"
-      :
-      "none";
-
+      ? "block"
+      : "none";
 
 }
-
-
-/* =====================================================
-   ACCORDION + OPEN COUNT
-===================================================== */
-
 
 [
   "case01",
@@ -4130,27 +2632,18 @@ function updateProgress(){
 .forEach(
   function(caseId){
 
-
     var details =
       document.getElementById(
         "details-" + caseId
       );
 
-
     details.addEventListener(
       "toggle",
       function(){
 
-
         if(
           details.open
         ){
-
-
-          /*
-            Close the other cases.
-          */
-
 
           document
             .querySelectorAll(
@@ -4159,148 +2652,96 @@ function updateProgress(){
             .forEach(
               function(other){
 
-
                 if(
                   other !==
                   details
                 ){
-
                   other.open =
                     false;
-
                 }
-
 
               }
             );
-
-
-          /*
-            Backend prevents
-            duplicate open events
-            for the same visitor.
-          */
-
 
           sendEvent(
             caseId,
             "open"
           );
 
-
           loadStats();
 
-
         }
-
 
       }
     );
 
-
   }
 );
 
-
-/* =====================================================
-   CASE 01
-===================================================== */
-
-
 var artifacts = {
-
 
   "Registry":[
 
-
     "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater = C:\\Users\\analyst\\AppData\\Roaming\\updater.exe",
-
 
     "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RecentDocs",
 
-
     "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU"
 
-
   ],
-
 
   "Processes":[
 
-
     "chrome.exe",
-
 
     "explorer.exe",
 
-
     "SearchHost.exe"
 
-
   ],
-
 
   "USB":[
 
-
     "VID_0781&PID_5591 — SanDisk",
-
 
     "Device state: disconnected",
 
-
     "User context: analyst"
 
-
   ],
-
 
   "Downloads":[
 
-
     "C:\\Users\\analyst\\Downloads\\invoice.pdf",
-
 
     "C:\\Users\\analyst\\Downloads\\meeting_notes.docx"
 
-
   ],
-
 
   "Logon":[
 
-
     "Interactive logon successful",
-
 
     "User: analyst",
 
-
     "Logon Type: 2"
-
 
   ]
 
-
 };
-
 
 var activeArtifact =
   "Registry";
 
-
 function renderArtifactTabs(){
-
 
   var holder =
     document.getElementById(
       "artifactTabs"
     );
 
-
   holder.innerHTML =
     "";
-
 
   Object
     .keys(
@@ -4309,75 +2750,55 @@ function renderArtifactTabs(){
     .forEach(
       function(name){
 
-
         var button =
           document.createElement(
             "button"
           );
 
-
         button.className =
           "artifact-tab";
-
 
         if(
           name ===
           activeArtifact
         ){
-
-
           button.classList.add(
             "active"
           );
-
-
         }
-
 
         button.textContent =
           name;
 
-
         button.onclick =
           function(){
-
 
             activeArtifact =
               name;
 
-
             renderArtifactTabs();
-
 
             showArtifact();
 
-
           };
-
 
         holder.appendChild(
           button
         );
 
-
       }
     );
 
-
   showArtifact();
-
 
 }
 
-
 function showArtifact(){
-
 
   var holder =
     document.getElementById(
       "artifactViewer"
     );
-
 
   holder.innerHTML =
     artifacts[
@@ -4386,24 +2807,19 @@ function showArtifact(){
     .map(
       function(line){
 
-
         return(
           '<span class="evidence-line">' +
           escapeHTML(line) +
           '</span>'
         );
 
-
       }
     )
     .join("");
 
-
 }
 
-
 function escapeHTML(value){
-
 
   return String(value)
     .replace(
@@ -4419,12 +2835,9 @@ function escapeHTML(value){
       "&gt;"
     );
 
-
 }
 
-
 function submitCase1(){
-
 
   var answer =
     normalize(
@@ -4435,54 +2848,41 @@ function submitCase1(){
         .value
     );
 
-
   var feedback =
     document.getElementById(
       "feedback1"
     );
 
-
   var correct =
-
 
     answer.includes(
       "currentversion\\run"
     )
 
-
     ||
-
 
     answer.includes(
       "currentversion run"
     )
 
-
     ||
-
 
     answer.includes(
       "registry run"
     )
 
-
     ||
-
 
     answer ===
       "run key"
 
-
     ||
-
 
     answer.includes(
       "hkcu run"
     )
 
-
     ||
-
 
     (
       answer.includes(
@@ -4494,9 +2894,7 @@ function submitCase1(){
       )
     )
 
-
     ||
-
 
     (
       answer.includes(
@@ -4504,176 +2902,123 @@ function submitCase1(){
       )
     );
 
-
   if(correct){
-
 
     feedback.textContent =
       "Finding validated.";
-
 
     solveCase(
       "case01"
     );
 
-
   }else{
-
 
     feedback.textContent =
       "Not validated. Review the artifact categories and identify the persistence mechanism.";
 
-
   }
-
 
 }
 
-
-/* =====================================================
-   CASE 02
-===================================================== */
-
-
 var timelineEvents = [
 
-
   {
-
     id:"document",
-
     text:
       "winword.exe opened Q3_Report.docm"
-
   },
 
-
   {
-
     id:"spawn",
-
     text:
       "winword.exe → powershell.exe"
-
   },
 
-
   {
-
     id:"network",
-
     text:
       "powershell.exe → 198.51.100.24:443"
-
   },
 
-
   {
-
     id:"write",
-
     text:
       "powershell.exe created C:\\Users\\Public\\update.dat"
-
   }
 
-
 ];
-
 
 var timelineSelection =
   [];
 
-
 function shuffledEvents(){
-
 
   return(
     timelineEvents
       .slice()
       .sort(
         function(){
-
           return(
             Math.random() - .5
           );
-
         }
       )
   );
 
-
 }
-
 
 function renderTimeline(){
 
-
   timelineSelection =
     [];
-
 
   var holder =
     document.getElementById(
       "timelineEvents"
     );
 
-
   holder.innerHTML =
     "";
-
 
   shuffledEvents()
     .forEach(
       function(event){
-
 
         var card =
           document.createElement(
             "div"
           );
 
-
         card.className =
           "timeline-event";
-
 
         card.dataset.id =
           event.id;
 
-
         card.innerHTML =
-
           '<div class="event-order">?</div>' +
-
           '<div>' +
           escapeHTML(
             event.text
           ) +
           '</div>';
 
-
         card.onclick =
           function(){
-
 
             toggleTimelineEvent(
               card,
               event.id
             );
 
-
           };
-
 
         holder.appendChild(
           card
         );
 
-
       }
     );
-
 
   document
     .getElementById(
@@ -4682,7 +3027,6 @@ function renderTimeline(){
     .style.display =
       "none";
 
-
   document
     .getElementById(
       "timelineFeedback"
@@ -4690,15 +3034,12 @@ function renderTimeline(){
     .textContent =
       "";
 
-
 }
-
 
 function toggleTimelineEvent(
   card,
   id
 ){
-
 
   if(
     timelineSelection.includes(
@@ -4706,50 +3047,36 @@ function toggleTimelineEvent(
     )
   ){
 
-
     timelineSelection =
       timelineSelection.filter(
         function(item){
-
-
           return(
             item !== id
           );
-
-
         }
       );
-
 
     card.classList.remove(
       "selected"
     );
 
-
   }else{
-
 
     timelineSelection.push(
       id
     );
 
-
     card.classList.add(
       "selected"
     );
 
-
   }
-
 
   refreshOrders();
 
-
 }
 
-
 function refreshOrders(){
-
 
   document
     .querySelectorAll(
@@ -4758,12 +3085,10 @@ function refreshOrders(){
     .forEach(
       function(card){
 
-
         var index =
           timelineSelection.indexOf(
             card.dataset.id
           );
-
 
         card
           .querySelector(
@@ -4771,43 +3096,28 @@ function refreshOrders(){
           )
           .textContent =
             index === -1
-            ?
-            "?"
-            :
-            index + 1;
-
+            ? "?"
+            : index + 1;
 
       }
     );
 
-
 }
-
 
 function resetTimeline(){
 
-
   renderTimeline();
-
 
 }
 
-
 function validateTimeline(){
 
-
   var correct = [
-
     "document",
-
     "spawn",
-
     "network",
-
     "write"
-
   ];
-
 
   var isCorrect =
     JSON.stringify(
@@ -4818,19 +3128,15 @@ function validateTimeline(){
       correct
     );
 
-
   var feedback =
     document.getElementById(
       "timelineFeedback"
     );
 
-
   if(isCorrect){
-
 
     feedback.textContent =
       "Timeline reconstructed. Continue to attribution.";
-
 
     document
       .getElementById(
@@ -4839,22 +3145,16 @@ function validateTimeline(){
       .style.display =
         "block";
 
-
   }else{
-
 
     feedback.textContent =
       "Sequence not validated. Use process causality rather than timestamps.";
 
-
   }
-
 
 }
 
-
 function submitCase2(){
-
 
   var answer =
     normalize(
@@ -4865,68 +3165,35 @@ function submitCase2(){
         .value
     );
 
-
   var feedback =
     document.getElementById(
       "feedback2"
     );
-
-
-  /*
-    Flexible answers accepted:
-
-    powershell
-
-    powershell.exe
-
-    winword.exe → powershell.exe
-
-    PROCESS winword.exe → powershell.exe
-
-    powershell.exe → 198.51.100.24:443
-
-    full supporting event
-  */
-
 
   var correct =
     answer.includes(
       "powershell"
     );
 
-
   if(correct){
-
 
     feedback.textContent =
       "Attribution validated.";
-
 
     solveCase(
       "case02"
     );
 
-
   }else{
-
 
     feedback.textContent =
       "Not validated. Identify the process responsible for the outbound network event.";
 
-
   }
-
 
 }
 
-
-/* =====================================================
-   CASE 03
-===================================================== */
-
-
 function submitCase3(){
-
 
   var answer =
     normalize(
@@ -4937,31 +3204,24 @@ function submitCase3(){
         .value
     );
 
-
   var feedback =
     document.getElementById(
       "feedback3"
     );
 
-
   var correct =
-
 
     answer.includes(
       "sync-cloud.example"
     )
 
-
     ||
-
 
     answer.includes(
       "sync cloud example"
     )
 
-
     ||
-
 
     (
       answer.includes(
@@ -4973,124 +3233,75 @@ function submitCase3(){
       )
     );
 
-
   if(correct){
-
 
     feedback.textContent =
       "Correlation validated.";
-
 
     solveCase(
       "case03"
     );
 
-
   }else{
-
 
     feedback.textContent =
       "Not validated. Correlate the malware destination with passive DNS and campaign infrastructure.";
 
-
   }
-
 
 }
 
-
-/* =====================================================
-   SOLVE CASE
-===================================================== */
-
-
 function solveCase(id){
-
 
   var alreadySolved =
     state.solved.includes(
       id
     );
 
-
   if(
     !alreadySolved
   ){
-
 
     state.solved.push(
       id
     );
 
-
     saveState();
-
 
     sendEvent(
       id,
       "solve"
     );
 
-
   }
-
 
   updateProgress();
 
-
-  /*
-    Give Google Sheet
-    a moment to update,
-    then refresh stats.
-  */
-
-
   setTimeout(
     function(){
-
       loadStats();
-
     },
     1000
   );
 
-
 }
 
-
-/* =====================================================
-   HINT
-===================================================== */
-
-
 function toggleHint(id){
-
 
   var hint =
     document.getElementById(
       id
     );
 
-
   hint.style.display =
     hint.style.display ===
     "block"
-    ?
-    "none"
-    :
-    "block";
-
+    ? "none"
+    : "block";
 
 }
 
-
-/* =====================================================
-   CLAIM
-===================================================== */
-
-
 async function submitClaimToSheet(){
-
 
   var name =
     document
@@ -5100,7 +3311,6 @@ async function submitClaimToSheet(){
       .value
       .trim();
 
-
   var linkedin =
     document
       .getElementById(
@@ -5109,34 +3319,22 @@ async function submitClaimToSheet(){
       .value
       .trim();
 
-
   var feedback =
     document.getElementById(
       "claimFeedback"
     );
-
 
   if(
     !name &&
     !linkedin
   ){
 
-
     feedback.textContent =
       "Add your name or LinkedIn profile if you want to claim the win.";
 
-
     return;
 
-
   }
-
-
-  /*
-    Optional basic LinkedIn
-    format validation.
-  */
-
 
   if(
     linkedin &&
@@ -5147,23 +3345,17 @@ async function submitClaimToSheet(){
       )
   ){
 
-
     feedback.textContent =
       "Please enter a valid LinkedIn profile URL.";
 
-
     return;
 
-
   }
-
 
   feedback.textContent =
     "Submitting...";
 
-
   try{
-
 
     await fetch(
       API_URL,
@@ -5174,10 +3366,8 @@ async function submitClaimToSheet(){
         mode:"no-cors",
 
         headers:{
-
           "Content-Type":
             "text/plain;charset=utf-8"
-
         },
 
         body:
@@ -5202,10 +3392,8 @@ async function submitClaimToSheet(){
       }
     );
 
-
     feedback.textContent =
       "Win claimed. Nice work.";
-
 
     document
       .getElementById(
@@ -5214,7 +3402,6 @@ async function submitClaimToSheet(){
       .value =
         "";
 
-
     document
       .getElementById(
         "claimLinkedIn"
@@ -5222,41 +3409,28 @@ async function submitClaimToSheet(){
       .value =
         "";
 
-
   }catch(error){
-
 
     feedback.textContent =
       "Could not submit right now. Please try again.";
 
-
   }
 
-
 }
-
-
-/* =====================================================
-   SCROLL TOP
-===================================================== */
-
 
 var scrollButton =
   document.getElementById(
     "scrollTop"
   );
 
-
 window.addEventListener(
   "scroll",
   function(){
-
 
     if(
       window.scrollY >
       550
     ){
-
 
       scrollButton
         .classList
@@ -5264,9 +3438,7 @@ window.addEventListener(
           "show"
         );
 
-
     }else{
-
 
       scrollButton
         .classList
@@ -5274,33 +3446,17 @@ window.addEventListener(
           "show"
         );
 
-
     }
-
 
   }
 );
 
-
-/* =====================================================
-   INIT
-===================================================== */
-
-
 renderArtifactTabs();
-
-
 renderTimeline();
-
-
 updateProgress();
-
-
 loadStats();
 
-
 </script>
-
 
 </body>
 
